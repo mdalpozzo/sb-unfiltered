@@ -3,13 +3,10 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      // TODO swap this out for logo from contentful
       {
         protocol: 'https',
-        hostname: 'tailwindui.com',
-        // hostname: 'assets.example.com',
+        hostname: 'images.ctfassets.net',
         port: '',
-        // pathname: '/account123/**',
         pathname: '/**',
       },
     ],

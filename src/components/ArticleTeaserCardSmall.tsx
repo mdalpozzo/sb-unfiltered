@@ -12,17 +12,23 @@ export const ArticleTeaserCardSmall = ({
   imageUrl,
   imageDescription,
 }: ArticleTeaserCardPropsSmall) => {
+  if (imageUrl === 'error') {
+    return <p>error</p>
+  }
+
   return (
     <div>
-      <Image
-        className="object-cover object-center aspect-video"
-        // fill
-        src={imageUrl}
-        alt={imageDescription}
-      />
+      <div className="w-full aspect-video relative">
+        <Image
+          className="object-cover object-center aspect-video"
+          fill
+          src={imageUrl}
+          alt={imageDescription}
+        />
+      </div>
       <div className="flex flex-col space-y-4">
         <p className="text-sm">{imageDescription}</p>
-        <p className="text-xl">{title}</p>
+        <p className="text-2xl">{title}</p>
       </div>
     </div>
   )

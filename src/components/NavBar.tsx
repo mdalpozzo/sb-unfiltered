@@ -1,5 +1,6 @@
 import { LINE_COLORS_DARK, LINE_COLORS_LIGHT } from '@/constants'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function NavBar() {
   return (
@@ -11,7 +12,7 @@ export function NavBar() {
         aria-label="Global"
       >
         <div className="flex">
-          <a href="/">
+          <Link href="/">
             <span className="sr-only">Santa Barbara Unfiltered</span>
             <div className="relative">
               <Image
@@ -23,7 +24,7 @@ export function NavBar() {
                 priority
               />
             </div>
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

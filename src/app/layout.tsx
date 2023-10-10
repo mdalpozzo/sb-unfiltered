@@ -1,10 +1,7 @@
 import { NavBar } from '@/components/NavBar'
 import './globals.css'
 import type { Metadata } from 'next'
-// import { Inter } from 'next/font/google'
 import { Didact_Gothic } from 'next/font/google'
-
-// const inter = Inter({ subsets: ['latin'] })
 
 const didactGothic = Didact_Gothic({
   weight: ['400'],

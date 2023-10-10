@@ -1,10 +1,25 @@
-export const ArticleTeaserCard = ({}: {}) => {
+import Image, { StaticImageData } from 'next/image'
+
+export interface ArticleTeaserCardProps {
+  title: string
+  description: string
+  // TODO - StaticImageData is only for dev. remove when remote images implemented
+  imageUrl: string | StaticImageData
+  imageDescription: string
+}
+
+export const ArticleTeaserCard = ({
+  title,
+  description,
+  imageUrl,
+  imageDescription,
+}: ArticleTeaserCardProps) => {
   return (
-    <div className="text-slate-500 p-2 bg-purple-100">
-      <p className="h-100">IMAGE</p>
-      <p className="h-25">image caption</p>
-      <p className="h-35">TITLE</p>
-      <p className="h-75">description</p>
+    <div className="text-black dark:text-white">
+      <Image fill src={imageUrl} alt={imageDescription} />
+      <p className="h-25">{imageDescription}</p>
+      <p className="h-35">{title}</p>
+      <p className="h-75">{description}</p>
     </div>
   )
 }

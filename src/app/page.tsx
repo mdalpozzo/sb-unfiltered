@@ -1,12 +1,14 @@
 import { ArticleTeaserCard } from '@/components/ArticleTeaserCard'
+import { LINE_COLORS_DARK, LINE_COLORS_LIGHT } from '@/constants'
 import { MockArticle } from '@/mocks/MockArticle'
-import Image from 'next/image'
 
 export default function Home() {
   return (
     <main className="w-full min-h-screen p-24">
-      <div className="grid grid-cols-2 divide-x divide-slate-100 divide-solid">
-        <div className="">
+      <div
+        className={`grid grid-cols-6 divide-x divide-${LINE_COLORS_LIGHT} dark:divide-${LINE_COLORS_DARK} divide-solid`}
+      >
+        <div className="col-span-4 px-4">
           <ArticleTeaserCard
             title={MockArticle.name}
             description={MockArticle.description}
@@ -15,8 +17,8 @@ export default function Home() {
           />
         </div>
 
-        <div className="grid grid-rows-2">
-          <div className="">
+        <div className="grid grid-rows-2 col-span-2 px-4">
+          <div className="w-full">
             <ArticleTeaserCard
               title={MockArticle.name}
               description={MockArticle.description}
@@ -25,7 +27,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="">
+          <div className="w-full">
             <ArticleTeaserCard
               title={MockArticle.name}
               description={MockArticle.description}

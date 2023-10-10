@@ -15,8 +15,13 @@ export const ArticleTeaserCard = ({
   imageDescription,
 }: ArticleTeaserCardProps) => {
   return (
-    <div className="text-black dark:text-white">
-      <Image fill src={imageUrl} alt={imageDescription} />
+    <div>
+      <Image
+        className="object-cover object-center"
+        // fill
+        src={imageUrl}
+        alt={imageDescription}
+      />
       <p className="h-25">{imageDescription}</p>
       <p className="h-35">{title}</p>
       <p className="h-75">{description}</p>

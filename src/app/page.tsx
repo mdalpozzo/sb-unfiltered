@@ -39,7 +39,7 @@ export default function Home() {
         </div>
       </div>
 
-      <Section label="Can't Miss!">
+      <Section label="Hidden Gems">
         <div className="grid grid-cols-4 mb-24 gap-8">
           <div>
             <ArticleTeaserCardXSmall

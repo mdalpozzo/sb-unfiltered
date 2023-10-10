@@ -1,8 +1,9 @@
 import profilePic from '@/images/stearns-wharf-optimized.jpg'
 
 export const MockArticle = {
-  name: 'Article 1',
-  description: 'Description 1',
+  title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+  description:
+    'Eiusmod tempor incididunt ut labore et dolore magna aliqua pellentesque id nibh tortor id aliquet',
   imageUrl: profilePic,
-  imageDescription: 'Stearns Wharf',
+  imageDescription: 'Risus feugiat in ante',
 }

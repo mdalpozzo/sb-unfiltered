@@ -1,19 +1,17 @@
 import Image, { StaticImageData } from 'next/image'
 
-export interface ArticleTeaserCardProps {
-  title: string
-  description: string
+export interface ArticleTeaserCardPropsSmall {
   // TODO - StaticImageData is only for dev. remove when remote images implemented
   imageUrl: string | StaticImageData
   imageDescription: string
+  title: string
 }
 
-export const ArticleTeaserCard = ({
+export const ArticleTeaserCardSmall = ({
   title,
-  description,
   imageUrl,
   imageDescription,
-}: ArticleTeaserCardProps) => {
+}: ArticleTeaserCardPropsSmall) => {
   return (
     <div>
       <Image
@@ -24,8 +22,7 @@ export const ArticleTeaserCard = ({
       />
       <div className="flex flex-col space-y-4">
         <p className="text-sm">{imageDescription}</p>
-        <p className="text-2xl">{title}</p>
-        <p className="text-base">{description}</p>
+        <p className="text-xl">{title}</p>
       </div>
     </div>
   )

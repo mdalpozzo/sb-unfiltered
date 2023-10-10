@@ -173,7 +173,7 @@ export default async function Home() {
   )
 }
 
-export const getStories = async (): Promise<FrontPageStories> => {
+const getStories = async (): Promise<FrontPageStories> => {
   const res = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/`,
     {

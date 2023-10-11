@@ -20,7 +20,7 @@ export const HomePageDesktop = ({
   return (
     <div>
       <div
-        className={`grid grid-cols-6 divide-x divide-${LINE_COLORS_LIGHT} dark:divide-${LINE_COLORS_DARK} divide-solid mb-24`}
+        className={`grid grid-cols-6 divide-x divide-solid divide-${LINE_COLORS_LIGHT} dark:divide-${LINE_COLORS_DARK} mb-24`}
       >
         <div className="col-span-4 px-4">
           <ArticleTeaserCard

@@ -1,6 +1,7 @@
 import { ArticleTeaserCardProps } from '@/components/ArticleTeaserCard'
 import { ArticleTeaserCardPropsSmall } from '@/components/ArticleTeaserCardSmall'
 import { HomePageDesktop } from '@/components/HomePage/HomePageDesktop'
+import { HomePageMobile } from '@/components/HomePage/HomePageMobile'
 import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '@/constants'
 import { frontPageStories } from '@/contentQueries/frontPageStories'
 
@@ -14,8 +15,14 @@ export default async function Home() {
   const { mainStory, sideStories } = response
 
   return (
-    <main className="w-full min-h-screen p-24">
-      <HomePageDesktop mainStory={mainStory} sideStories={sideStories} />
+    <main className="w-full min-h-screen pt-24 p-12 sm:p-24">
+      <div className="hidden sm:flex">
+        <HomePageDesktop mainStory={mainStory} sideStories={sideStories} />
+      </div>
+
+      <div className="flex sm:hidden">
+        <HomePageMobile mainStory={mainStory} sideStories={sideStories} />
+      </div>
     </main>
   )
 }

@@ -48,8 +48,6 @@ const getStories = async (): Promise<FrontPageStories> => {
     console.log('errors: ', errors)
   }
 
-  console.log('data: ', data)
-
   const mainStoryData = data?.frontPageConfigCollection?.items.find(
     (item: any) => {
       return item?.slotName === 'mainStory'

@@ -2,6 +2,15 @@ import { NavBar } from '@/components/NavBar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Didact_Gothic } from 'next/font/google'
+import { Providers } from '@/components/Providers'
+import {
+  DARK_BG_COLOR,
+  DARK_TEXT_COLOR,
+  DEFAULT_THEME,
+  LIGHT_BG_COLOR,
+  LIGHT_TEXT_COLOR,
+} from '@/constants'
+import { getThemeCookie } from '@/theme/getThemeCookie'
 
 const didactGothic = Didact_Gothic({
   weight: ['400'],
@@ -20,13 +29,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const theme = getThemeCookie() || DEFAULT_THEME
+
   return (
-    <html lang="en">
+    <html lang="en" className={theme} style={{ colorScheme: theme }}>
       <body
-        className={`${didactGothic.className} bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950`}
+        className={`${didactGothic.className} bg-${LIGHT_BG_COLOR} text-${LIGHT_TEXT_COLOR} dark:bg-${DARK_BG_COLOR} dark:text-${DARK_TEXT_COLOR}`}
       >
-        <NavBar />
-        {children}
+        <Providers>
+          <NavBar initialTheme={theme} />
+          {children}
+        </Providers>
       </body>
     </html>
   )

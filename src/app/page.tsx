@@ -1,5 +1,5 @@
-import { ArticleTeaserCardProps } from '@/components/ArticleTeaserCard'
-import { ArticleTeaserCardPropsSmall } from '@/components/ArticleTeaserCardSmall'
+import { ArticleTeaserCardProps } from '@/components/ArticleTeasers/ArticleTeaserCard'
+import { ArticleTeaserCardPropsSmall } from '@/components/ArticleTeasers/ArticleTeaserCardSmall'
 import { HomePageDesktop } from '@/components/HomePage/HomePageDesktop'
 import { HomePageMobile } from '@/components/HomePage/HomePageMobile'
 import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '@/constants'

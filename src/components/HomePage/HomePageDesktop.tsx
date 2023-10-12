@@ -1,10 +1,10 @@
 import { MockArticle } from '@/mocks/MockArticle'
-import { ArticleTeaserCard, ArticleTeaserCardProps } from '../ArticleTeaserCard'
+import { ArticleTeaserCard, ArticleTeaserCardProps } from '../ArticleTeasers/ArticleTeaserCard'
 import {
   ArticleTeaserCardPropsSmall,
   ArticleTeaserCardSmall,
-} from '../ArticleTeaserCardSmall'
-import { ArticleTeaserCardXSmall } from '../ArticleTeaserCardXSmall'
+} from '../ArticleTeasers/ArticleTeaserCardSmall'
+import { ArticleTeaserCardXSmall } from '../ArticleTeasers/ArticleTeaserCardXSmall'
 import { MoreSectionDesktop } from '../MoreSection'
 import { MainSection } from '../MainSection'
 

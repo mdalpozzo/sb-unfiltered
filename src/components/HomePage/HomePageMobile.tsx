@@ -1,9 +1,9 @@
 import { MockArticle } from '@/mocks/MockArticle'
-import { ArticleTeaserCard, ArticleTeaserCardProps } from '../ArticleTeaserCard'
+import { ArticleTeaserCard, ArticleTeaserCardProps } from '../ArticleTeasers/ArticleTeaserCard'
 import {
   ArticleTeaserCardPropsSmall,
   ArticleTeaserCardSmall,
-} from '../ArticleTeaserCardSmall'
+} from '../ArticleTeasers/ArticleTeaserCardSmall'
 
 interface HomePageMobileProps {
   mainStory?: ArticleTeaserCardProps

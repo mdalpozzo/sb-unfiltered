@@ -1,7 +1,7 @@
 // import Image from 'next/image'
 import Link from 'next/link'
 import { DarkModeToggle } from './DarkModeToggle'
-import { LogoSVG } from '@/images/logo/LogoSVG'
+import { LogoSVG } from '@/components/LogoSVG'
 import { cn } from '@/utils/cn'
 import { NavMenu } from './NavMenu'
 

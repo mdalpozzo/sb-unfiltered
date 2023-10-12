@@ -41,9 +41,6 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
     setMounted(true)
   }, [])
 
-  console.log('initialTheme: ', initialTheme)
-  console.log('theme: ', theme)
-
   const onChangeTheme = (themeValue: Theme) => {
     setThemeCookie(themeValue)
     setTheme(themeValue)
@@ -122,7 +119,7 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
             : themeStringToValue((initialTheme as Theme) ?? DEFAULT_THEME)
         }
         step="1"
-        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-light-200"
+        className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-slate-200 accent-gray-300"
         onChange={onChangeSlider}
         disabled={!mounted}
       />

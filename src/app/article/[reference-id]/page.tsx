@@ -14,6 +14,8 @@ export default async function Article({ params }: ArticleProps) {
 
   const heroImage = article?.images?.[0]
 
+  console.log('article?.bodyRichText: ', article?.bodyRichText)
+
   return (
     <article className="w-full">
       <div className="w-full flex flex-col items-center mb-14">
@@ -23,7 +25,7 @@ export default async function Article({ params }: ArticleProps) {
 
       {!!heroImage && (
         <div className="w-full flex flex-col items-center mb-14">
-          <div className="w-1/2 aspect-video relative">
+          <div className="w-4/6 aspect-video relative">
             <Image
               className="object-cover object-center"
               alt={heroImage.title}
@@ -35,10 +37,12 @@ export default async function Article({ params }: ArticleProps) {
         </div>
       )}
 
-      {/* <div
+      <div
+        className="font-serif text-lg"
         dangerouslySetInnerHTML={{
-          __html: article?.content || '',
-        }} */}
+          __html: article?.bodyRichText || '',
+        }}
+      />
     </article>
   )
 }

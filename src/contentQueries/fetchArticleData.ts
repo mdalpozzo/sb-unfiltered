@@ -1,4 +1,6 @@
 import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '@/constants'
+// import { remark } from 'remark'
+// import html from 'remark-html'
 
 interface Article {
   referenceId: string
@@ -70,11 +72,19 @@ export const fetchArticleData = async ({
     console.log('error - no article found: ', foundArticle)
   }
 
+  console.log('foundArticle.body: ', typeof foundArticle.body)
+
+  // Use remark to convert markdown into HTML string
+  // const processedContent = await remark().use(html).process(foundArticle.body)
+
+  // console.log('processedContent: ', processedContent)
+  // const contentHtml = processedContent.toString()
+
   return {
     referenceId: foundArticle.referenceId,
     title: foundArticle.title,
     subtitle: foundArticle.subtitle,
-    bodyRichText: foundArticle.bodyRichText,
+    bodyRichText: foundArticle.body,
     images: foundArticle.heroImagesCollection.items.map((item: any) => {
       return {
         title: item.title || '',

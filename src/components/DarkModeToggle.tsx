@@ -66,12 +66,16 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
     //   <option value="light">Light</option>
     // </select>
 
-    <div className="w-35">
-      <label htmlFor="steps-range" className="w-full grid grid-cols-3 gap-7">
+    <div className="w-20 sm:w-50s">
+      <label
+        htmlFor="steps-range"
+        className="w-full grid grid-cols-3 gap-3 sm:gap-5"
+      >
         <SunIcon />
         <TvIcon />
         <MoonIcon />
       </label>
+
       <input
         id="steps-range"
         type="range"

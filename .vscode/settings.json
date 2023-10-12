@@ -1,3 +1,6 @@
 {
-    "svg.preview.background": "editor"
+    "svg.preview.background": "editor",
+    "files.associations": {
+        "*.css": "postcss"
+    }
 }

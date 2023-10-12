@@ -1,18 +1,23 @@
-import { MockArticle } from '@/mocks/MockArticle'
-import { ArticleTeaserCard, ArticleTeaserCardProps } from '../ArticleTeasers/ArticleTeaserCard'
+import {
+  ArticleTeaserCard,
+  ArticleTeaserCardProps,
+} from '../ArticleTeasers/ArticleTeaserCard'
 import {
   ArticleTeaserCardPropsSmall,
   ArticleTeaserCardSmall,
 } from '../ArticleTeasers/ArticleTeaserCardSmall'
+import { ArticleTeaserCardXSmallProps } from '../ArticleTeasers/ArticleTeaserCardXSmall'
 
 interface HomePageMobileProps {
   mainStory?: ArticleTeaserCardProps
   sideStories?: ArticleTeaserCardPropsSmall[]
+  allStories?: ArticleTeaserCardXSmallProps[]
 }
 
 export const HomePageMobile = ({
   mainStory,
   sideStories,
+  allStories,
 }: HomePageMobileProps) => {
   return (
     <div
@@ -20,6 +25,7 @@ export const HomePageMobile = ({
     >
       <div className="pb-6">
         <ArticleTeaserCard
+          referenceId={mainStory?.referenceId || 'error'}
           title={mainStory?.title || 'error'}
           description={mainStory?.description || 'error'}
           imageUrl={mainStory?.imageUrl || 'error'}
@@ -29,11 +35,12 @@ export const HomePageMobile = ({
 
       {sideStories?.map((story) => {
         return (
-          <div key={story?.title} className="pt-6 pb-6">
+          <div key={story.referenceId} className="pt-6 pb-6">
             <ArticleTeaserCardSmall
-              title={story?.title}
-              imageUrl={story?.imageUrl}
-              imageDescription={story?.imageDescription}
+              referenceId={story.referenceId}
+              title={story.title}
+              imageUrl={story.imageUrl}
+              imageDescription={story.imageDescription}
             />
           </div>
         )
@@ -41,13 +48,14 @@ export const HomePageMobile = ({
 
       {/* TODO: add more section */}
 
-      {Array.from(Array(5)).map((_, index) => {
+      {allStories?.map((story) => {
         return (
-          <div key={index} className="pt-6 pb-6">
+          <div key={story.referenceId} className="pt-6 pb-6">
             <ArticleTeaserCardSmall
-              title={MockArticle.title}
-              imageUrl={MockArticle.imageUrl}
-              imageDescription={MockArticle.imageDescription}
+              referenceId={story.referenceId}
+              title={story.title}
+              imageUrl={story.imageUrl}
+              imageDescription={story.imageDescription}
             />
           </div>
         )

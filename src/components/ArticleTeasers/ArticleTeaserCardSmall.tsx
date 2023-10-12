@@ -1,9 +1,9 @@
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { ArticleClickableWrapper } from './ArticleClickableWrapper'
 
 export interface ArticleTeaserCardPropsSmall {
-  // TODO - StaticImageData is only for dev. remove when remote images implemented
-  imageUrl: string | StaticImageData
+  referenceId: string
+  imageUrl: string
   imageDescription: string
   title: string
 }
@@ -12,14 +12,15 @@ export const ArticleTeaserCardSmall = ({
   title,
   imageUrl,
   imageDescription,
+  referenceId,
 }: ArticleTeaserCardPropsSmall) => {
   if (imageUrl === 'error') {
     return <p>error</p>
   }
 
   return (
-    <ArticleClickableWrapper title={title}>
-      <div className="w-full aspect-video relative">
+    <ArticleClickableWrapper referenceId={referenceId}>
+      <div className="relative w-full aspect-video">
         <Image
           className="object-cover object-center aspect-video"
           fill

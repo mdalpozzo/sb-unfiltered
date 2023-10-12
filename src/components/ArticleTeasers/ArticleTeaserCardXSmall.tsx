@@ -1,9 +1,9 @@
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { ArticleClickableWrapper } from './ArticleClickableWrapper'
 
 export interface ArticleTeaserCardXSmallProps {
-  // TODO - StaticImageData is only for dev. remove when remote images implemented
-  imageUrl: string | StaticImageData
+  referenceId: string
+  imageUrl: string
   imageDescription: string
   title: string
   description: string
@@ -14,15 +14,20 @@ export const ArticleTeaserCardXSmall = ({
   imageUrl,
   imageDescription,
   description,
+  referenceId,
 }: ArticleTeaserCardXSmallProps) => {
   return (
-    <ArticleClickableWrapper title={title}>
-      <div className="flex flex-col space-y-4">
+    <ArticleClickableWrapper referenceId={referenceId}>
+      <div className="relative w-full aspect-xs-teaser">
         <Image
           className="object-cover object-center"
+          fill
           src={imageUrl}
           alt={imageDescription}
         />
+      </div>
+
+      <div className="flex flex-col space-y-2">
         <p className="text-base font-bold">{title}</p>
         <p className="text-sm">{description}</p>
       </div>

@@ -15,9 +15,9 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      // aspectRatio: {
-      //   '4/3': '4 / 3',
-      // },
+      aspectRatio: {
+        'xs-teaser': '14 / 9',
+      },
       colors: {
         'light-bg': colors.zinc[50],
         'light-text': colors.zinc[950],

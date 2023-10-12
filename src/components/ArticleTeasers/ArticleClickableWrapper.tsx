@@ -2,15 +2,15 @@ import Link from 'next/link'
 
 interface ArticleClickableWrapperProps {
   children: React.ReactNode
-  title: string
+  referenceId: string
 }
 
 export function ArticleClickableWrapper({
   children,
-  title,
+  referenceId,
 }: ArticleClickableWrapperProps) {
   return (
-    <Link className="cursor-pointer" href={`/article/${title}`}>
+    <Link className="cursor-pointer" href={`/article/${referenceId}`}>
       {children}
     </Link>
   )

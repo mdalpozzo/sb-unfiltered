@@ -26,8 +26,8 @@ export const ArticleTeaserCardSmall = ({
           alt={imageDescription}
         />
       </div>
-      <div className="flex flex-col space-y-4">
-        <p className="text-sm">{imageDescription}</p>
+      <div className="flex flex-col space-y-2">
+        <p className="text-sm desktop">{imageDescription}</p>
         <p className="text-2xl">{title}</p>
       </div>
     </div>

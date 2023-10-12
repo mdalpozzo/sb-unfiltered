@@ -4,7 +4,6 @@ import {
   ArticleTeaserCardPropsSmall,
   ArticleTeaserCardSmall,
 } from '../ArticleTeaserCardSmall'
-import { LINE_COLORS_DARK, LINE_COLORS_LIGHT } from '@/constants'
 
 interface HomePageMobileProps {
   mainStory?: ArticleTeaserCardProps
@@ -17,8 +16,7 @@ export const HomePageMobile = ({
 }: HomePageMobileProps) => {
   return (
     <div
-      // todo clsx would make this easier to read
-      className={`grid grid-cols-1 divide-y divide-solid divide-${LINE_COLORS_LIGHT} dark:divide-${LINE_COLORS_DARK}`}
+      className={`grid grid-cols-1 divide-y divide-solid divide-light-line dark:divide-dark-line`}
     >
       <div className="pb-6">
         <ArticleTeaserCard

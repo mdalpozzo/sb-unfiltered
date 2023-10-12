@@ -33,6 +33,8 @@ export default function RootLayout({
           `${didactGothic.className} bg-light-bg text-light-text`,
           // dark
           `dark:bg-dark-bg dark:text-dark-text`,
+          // padding
+          'pt-base-padding-top px-6 sm:px-16',
         ])}
       >
         <Providers>

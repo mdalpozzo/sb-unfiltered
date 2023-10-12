@@ -13,7 +13,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
   return (
     <header
       className={cn([
-        'h-16',
+        'h-navbar',
         `bg-inherit fixed top-0 left-0 right-0 z-50 border-b border-solid border-light-lin`,
         // dark mode
         `dark:border-dark-line dark:bg-zinc-900`,
@@ -33,7 +33,8 @@ export function NavBar({ initialTheme }: NavBarProps) {
           <div className="relative flex justify-center items-center">
             <LogoSVG
               className={cn(`fill-dark-bg dark:fill-light-bg`)}
-              width="auto"
+              // TODO - height value does nothing...
+              width="100%"
               height="75%"
             />
           </div>

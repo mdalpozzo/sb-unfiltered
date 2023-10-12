@@ -5,23 +5,26 @@ import { useTheme } from 'next-themes'
 import { setThemeCookie } from '@/theme/setThemeCookie'
 import { MoonIcon, SunIcon, TvIcon } from '@heroicons/react/24/solid'
 import { DEFAULT_THEME } from '@/constants'
+import { cn } from '@/utils/cn'
 
-enum Theme {
+enum ThemeEnum {
   light = 0,
   system = 1,
   dark = 2,
 }
 
-function themeStringToValue(theme: string): Theme {
+type Theme = 'light' | 'system' | 'dark'
+
+function themeStringToValue(theme: string): ThemeEnum {
   switch (theme) {
     case 'light':
-      return Theme.light
+      return ThemeEnum.light
     case 'system':
-      return Theme.system
+      return ThemeEnum.system
     case 'dark':
-      return Theme.dark
+      return ThemeEnum.dark
     default:
-      return Theme.system
+      return ThemeEnum.system
   }
 }
 
@@ -38,25 +41,39 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
     setMounted(true)
   }, [])
 
-  const onChangeTheme: ChangeEventHandler<HTMLInputElement> = (e) => {
+  console.log('initialTheme: ', initialTheme)
+  console.log('theme: ', theme)
+
+  const onChangeTheme = (themeValue: Theme) => {
+    setThemeCookie(themeValue)
+    setTheme(themeValue)
+  }
+
+  const onChangeSlider: ChangeEventHandler<HTMLInputElement> = (e) => {
     const themeValue = Number(e.target.value)
-    let newTheme: keyof typeof Theme
+    let newTheme: keyof typeof ThemeEnum
 
     switch (themeValue) {
-      case Theme.light:
+      case ThemeEnum.light:
         newTheme = 'light'
         break
-      case Theme.system:
+      case ThemeEnum.system:
         newTheme = 'system'
         break
-      case Theme.dark:
+      case ThemeEnum.dark:
       default:
         newTheme = 'dark'
         break
     }
 
-    setThemeCookie(newTheme)
-    setTheme(newTheme)
+    onChangeTheme(newTheme)
+  }
+
+  const onClickIcon: React.MouseEventHandler<SVGSVGElement> = (e) => {
+    const themeValue = e.currentTarget.getAttribute('data-theme') as Theme
+    if (themeValue) {
+      onChangeTheme(themeValue)
+    }
   }
 
   return (
@@ -69,11 +86,29 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
     <div className="w-20 sm:w-50s">
       <label
         htmlFor="steps-range"
-        className="w-full grid grid-cols-3 gap-3 sm:gap-5"
+        className="w-full flex justify-between items-center gap-3"
       >
-        <SunIcon />
-        <TvIcon />
-        <MoonIcon />
+        <SunIcon
+          className={cn('flex-1 cursor-pointer', {
+            'text-gray-400': theme !== 'light',
+          })}
+          onClick={onClickIcon}
+          data-theme="light"
+        />
+        <TvIcon
+          className={cn('flex-1 cursor-pointer', {
+            'text-gray-400': theme !== 'system',
+          })}
+          onClick={onClickIcon}
+          data-theme="system"
+        />
+        <MoonIcon
+          className={cn('flex-1 cursor-pointer', {
+            'text-gray-400': theme !== 'dark',
+          })}
+          onClick={onClickIcon}
+          data-theme="dark"
+        />
       </label>
 
       <input
@@ -82,11 +117,13 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
         min="0"
         max="2"
         value={
-          theme ? themeStringToValue(theme) : initialTheme ?? DEFAULT_THEME
+          theme
+            ? themeStringToValue(theme)
+            : themeStringToValue((initialTheme as Theme) ?? DEFAULT_THEME)
         }
         step="1"
         className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer dark:bg-light-200"
-        onChange={onChangeTheme}
+        onChange={onChangeSlider}
         disabled={!mounted}
       />
     </div>

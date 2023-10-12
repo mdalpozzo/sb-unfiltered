@@ -27,6 +27,10 @@ const config: Config = {
         'dark-text': colors.zinc[100],
         'dark-line': colors.zinc[500],
       },
+      spacing: {
+        navbar: '4rem',
+        'base-padding-top': '7rem',
+      },
     },
   },
   plugins: [],

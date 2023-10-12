@@ -1,11 +1,15 @@
 import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '@/constants'
 
 interface Article {
+  referenceId: string
   title: string
   subtitle: string
-  body: string
-  imageUrls: string[]
-  referenceId: string
+  bodyRichText: string
+  images: {
+    title: string
+    description: string
+    url: string
+  }[]
 }
 
 export const articleByReferenceId = `
@@ -18,9 +22,9 @@ export const articleByReferenceId = `
             body
             heroImagesCollection {
                 items {
-                title
-                description
-                url
+                  title
+                  description
+                  url
                 }
             }
             }
@@ -34,7 +38,7 @@ interface FetchArticleDataArgs {
 
 export const fetchArticleData = async ({
   articleReferenceId,
-}: FetchArticleDataArgs): Promise<Article> => {
+}: FetchArticleDataArgs): Promise<Article | undefined> => {
   const res = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/`,
     {
@@ -60,7 +64,23 @@ export const fetchArticleData = async ({
     console.log('errors: ', errors)
   }
 
-  console.log('data: ', JSON.stringify(data, null, 2))
+  const foundArticle = data.articleCollection?.items?.[0]
 
-  return data
+  if (!foundArticle) {
+    console.log('error - no article found: ', foundArticle)
+  }
+
+  return {
+    referenceId: foundArticle.referenceId,
+    title: foundArticle.title,
+    subtitle: foundArticle.subtitle,
+    bodyRichText: foundArticle.bodyRichText,
+    images: foundArticle.heroImagesCollection.items.map((item: any) => {
+      return {
+        title: item.title || '',
+        description: item.description || '',
+        url: item.url || '',
+      }
+    }),
+  }
 }

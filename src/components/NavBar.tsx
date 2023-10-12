@@ -1,13 +1,8 @@
-import {
-  DARK_BG_COLOR,
-  LIGHT_BG_COLOR,
-  LINE_COLORS_DARK,
-  LINE_COLORS_LIGHT,
-} from '@/constants'
 // import Image from 'next/image'
 import Link from 'next/link'
 import { DarkModeToggle } from './DarkModeToggle'
 import { LogoSVG } from '@/images/logo/LogoSVG'
+import { cn } from '@/utils/cn'
 
 interface NavBarProps {
   initialTheme?: string
@@ -16,7 +11,11 @@ interface NavBarProps {
 export function NavBar({ initialTheme }: NavBarProps) {
   return (
     <header
-      className={`bg-inherit fixed top-0 left-0 right-0 z-50 border-b border-solid border-${LINE_COLORS_LIGHT} dark:border-${LINE_COLORS_DARK}`}
+      className={cn([
+        `bg-inherit fixed top-0 left-0 right-0 z-50 border-b border-solid border-light-line`,
+        // dark mode
+        `dark:border-dark-line dark:bg-zinc-900`,
+      ])}
     >
       <nav
         className="flex items-center justify-center p-1 lg:px-8"
@@ -36,7 +35,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
                 className="fill-red-500"
               /> */}
               <LogoSVG
-                className={`fill-${DARK_BG_COLOR} dark:fill-${LIGHT_BG_COLOR}`}
+                className={cn(`fill-dark-bg dark:fill-light-bg`)}
                 width={250}
               />
             </div>

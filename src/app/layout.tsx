@@ -3,14 +3,9 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Didact_Gothic } from 'next/font/google'
 import { Providers } from '@/components/Providers'
-import {
-  DARK_BG_COLOR,
-  DARK_TEXT_COLOR,
-  DEFAULT_THEME,
-  LIGHT_BG_COLOR,
-  LIGHT_TEXT_COLOR,
-} from '@/constants'
+import { DEFAULT_THEME } from '@/constants'
 import { getThemeCookie } from '@/theme/getThemeCookie'
+import { cn } from '@/utils/cn'
 
 const didactGothic = Didact_Gothic({
   weight: ['400'],
@@ -34,7 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={theme} style={{ colorScheme: theme }}>
       <body
-        className={`${didactGothic.className} bg-${LIGHT_BG_COLOR} text-${LIGHT_TEXT_COLOR} dark:bg-${DARK_BG_COLOR} dark:text-${DARK_TEXT_COLOR}`}
+        className={cn([
+          `${didactGothic.className} bg-light-bg text-light-text`,
+          // dark
+          `dark:bg-dark-bg dark:text-dark-text`,
+        ])}
       >
         <Providers>
           <NavBar initialTheme={theme} />

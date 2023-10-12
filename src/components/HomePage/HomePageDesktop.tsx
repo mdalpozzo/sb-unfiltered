@@ -5,7 +5,6 @@ import {
   ArticleTeaserCardSmall,
 } from '../ArticleTeaserCardSmall'
 import { ArticleTeaserCardXSmall } from '../ArticleTeaserCardXSmall'
-import { LINE_COLORS_DARK, LINE_COLORS_LIGHT } from '@/constants'
 import { MoreSectionDesktop } from '../MoreSection'
 
 interface HomePageDesktopProps {
@@ -20,7 +19,7 @@ export const HomePageDesktop = ({
   return (
     <div>
       <div
-        className={`grid grid-cols-6 divide-x divide-solid divide-${LINE_COLORS_LIGHT} dark:divide-${LINE_COLORS_DARK} mb-24`}
+        className={`grid grid-cols-6 divide-x divide-solid divide-light-line dark:divide-dark-line mb-24`}
       >
         <div className="col-span-4 px-4">
           <ArticleTeaserCard

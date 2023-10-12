@@ -19,7 +19,7 @@ export default async function Article({ params }: ArticleProps) {
   return (
     <article className="w-full">
       <div className="w-full flex flex-col items-center mb-14">
-        <p className="text-5xl font-extrabold">{article?.title}</p>
+        <p className="text-5xl font-extrabold mb-6">{article?.title}</p>
         <p className="text-2xl font-bold">{article?.subtitle}</p>
       </div>
 

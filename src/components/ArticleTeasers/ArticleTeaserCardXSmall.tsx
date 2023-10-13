@@ -28,7 +28,7 @@ export const ArticleTeaserCardXSmall = ({
       </div>
 
       <div className="flex flex-col space-y-2">
-        <p className="text-base font-bold">{title}</p>
+        <p className="text-base font-bold hover:underline">{title}</p>
         <p className="text-sm">{description}</p>
       </div>
     </ArticleClickableWrapper>

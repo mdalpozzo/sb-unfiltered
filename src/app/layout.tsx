@@ -34,7 +34,7 @@ export default function RootLayout({
           // dark
           `dark:bg-dark-bg dark:text-dark-text`,
           // padding
-          'pt-base-padding-top px-6 sm:px-16',
+          'pt-base-padding-top base-padding-x',
         ])}
       >
         <Providers>

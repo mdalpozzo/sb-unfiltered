@@ -19,13 +19,15 @@ export default async function Article({ params }: ArticleProps) {
   return (
     <article className="w-full">
       <div className="w-full flex flex-col items-center mb-14">
-        <p className="text-5xl font-extrabold mb-6">{article?.title}</p>
-        <p className="text-2xl font-bold">{article?.subtitle}</p>
+        <p className="text-3xl sm:text-5xl font-extrabold mb-6">
+          {article?.title}
+        </p>
+        <p className="text-2xl sm:font-bold">{article?.subtitle}</p>
       </div>
 
       {!!heroImage && (
         <div className="w-full flex flex-col items-center mb-14">
-          <div className="w-full sm:w-4/6 aspect-video relative">
+          <div className="w-screen story-hero-image-margin-x sm:w-4/6 aspect-video relative">
             <Image
               className="object-cover object-center"
               alt={heroImage.title}
@@ -38,7 +40,7 @@ export default async function Article({ params }: ArticleProps) {
       )}
 
       <div
-        className="w-full max-w-full font-serif text-lg"
+        className="w-full max-w-full font-serif text-lg flex-wrap break-all overflow-hidden"
         dangerouslySetInnerHTML={{
           __html: article?.bodyRichText || '',
         }}

@@ -35,4 +35,12 @@
   .mobile {
     @apply flex sm:hidden;
   }
+
+  .base-padding-x {
+    @apply px-6 sm:px-16;
+  }
+
+  .story-hero-image-margin-x {
+    @apply -mx-6 sm:-mx-16;
+  }
 }

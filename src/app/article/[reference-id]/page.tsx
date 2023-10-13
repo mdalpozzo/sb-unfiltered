@@ -25,7 +25,7 @@ export default async function Article({ params }: ArticleProps) {
 
       {!!heroImage && (
         <div className="w-full flex flex-col items-center mb-14">
-          <div className="w-4/6 aspect-video relative">
+          <div className="w-full sm:w-4/6 aspect-video relative">
             <Image
               className="object-cover object-center"
               alt={heroImage.title}
@@ -38,7 +38,7 @@ export default async function Article({ params }: ArticleProps) {
       )}
 
       <div
-        className="font-serif text-lg"
+        className="w-full max-w-full font-serif text-lg"
         dangerouslySetInnerHTML={{
           __html: article?.bodyRichText || '',
         }}

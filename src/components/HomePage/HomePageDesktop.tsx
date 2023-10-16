@@ -39,6 +39,7 @@ export const HomePageDesktop = ({
               description={mainStory?.description || 'error'}
               imageUrl={mainStory?.imageUrl || 'error'}
               imageDescription={mainStory?.imageDescription || 'error'}
+              hero
             />
           </div>
 
@@ -49,6 +50,7 @@ export const HomePageDesktop = ({
                 title={sideStories?.[0]?.title || 'error'}
                 imageUrl={sideStories?.[0]?.imageUrl || 'error'}
                 imageDescription={sideStories?.[0]?.imageDescription || 'error'}
+                hero
               />
             </div>
 
@@ -58,6 +60,7 @@ export const HomePageDesktop = ({
                 title={sideStories?.[1]?.title || 'error'}
                 imageUrl={sideStories?.[1]?.imageUrl || 'error'}
                 imageDescription={sideStories?.[1]?.imageDescription || 'error'}
+                hero
               />
             </div>
           </div>

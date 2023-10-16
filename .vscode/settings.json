@@ -1,6 +1,6 @@
 {
     "svg.preview.background": "editor",
     "files.associations": {
-        "*.css": "postcss"
+        "*.css": "tailwindcss"
     }
 }

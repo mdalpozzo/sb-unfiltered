@@ -27,12 +27,13 @@ export default async function Article({ params }: ArticleProps) {
 
       {!!heroImage && (
         <div className="w-full flex flex-col items-center mb-14">
-          <div className="w-screen story-hero-image-margin-x sm:w-4/6 aspect-video relative">
+          <div className="w-screen story-hero-image-margin-x sm:w-5/6 aspect-video relative">
             <Image
               className="object-cover object-center"
               alt={heroImage.title}
               fill
               src={heroImage.url}
+              priority
             />
           </div>
           <p className="text-sm">{heroImage.description}</p>

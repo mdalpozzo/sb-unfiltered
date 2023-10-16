@@ -6,6 +6,7 @@ export interface ArticleTeaserCardPropsSmall {
   imageUrl: string
   imageDescription: string
   title: string
+  hero?: boolean
 }
 
 export const ArticleTeaserCardSmall = ({
@@ -13,6 +14,7 @@ export const ArticleTeaserCardSmall = ({
   imageUrl,
   imageDescription,
   referenceId,
+  hero,
 }: ArticleTeaserCardPropsSmall) => {
   if (imageUrl === 'error') {
     return <p>error</p>
@@ -26,6 +28,7 @@ export const ArticleTeaserCardSmall = ({
           fill
           src={imageUrl}
           alt={imageDescription}
+          priority={hero}
         />
       </div>
 

@@ -1,11 +1,27 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { cn } from '@/utils/cn'
 
 export function NavMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const bodyDivRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (mobileMenuOpen && !bodyDivRef.current?.contains(e.target as Node)) {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleDocumentClick)
+
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentClick)
+    }
+  }, [mobileMenuOpen])
 
   useEffect(() => {
     // Prevent scrolling when the mobile menu is open
@@ -43,6 +59,7 @@ export function NavMenu() {
       )}
 
       <div
+        ref={bodyDivRef}
         // todo animate slide in transition
         className={cn(
           'fixed bg-black bg-opacity-50 top-navbar right-0 left-0 bottom-0 w-screen h-screen justify-end',
@@ -50,7 +67,12 @@ export function NavMenu() {
         )}
         onClick={() => setMobileMenuOpen(false)}
       >
-        <div className="relative bg-light-bg dark:bg-dark-bg p-6 overflow-y-auto h-full w-1/2">
+        <div
+          className="relative bg-light-bg dark:bg-dark-bg p-6 overflow-y-auto h-full w-1/2"
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+        >
           <div className="mt-6 flow-root">
             <div className="space-y-2 py-6">
               <a

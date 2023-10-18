@@ -1,13 +1,22 @@
 'use client'
 
-import { useState } from 'react'
-import { Dialog, Popover } from '@headlessui/react'
+import { useEffect, useState } from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
 import { cn } from '@/utils/cn'
 
 export function NavMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    // Prevent scrolling when the mobile menu is open
+    document.body.className = mobileMenuOpen
+      ? 'overflow-hidden'
+      : 'overflow-auto'
+
+    return () => {
+      document.body.className = 'auto'
+    }
+  }, [mobileMenuOpen])
 
   return (
     <div className="z-30">
@@ -32,12 +41,12 @@ export function NavMenu() {
       )}
 
       <div
-        id="body-div"
         // todo animate slide in transition
         className={cn(
           'fixed bg-black bg-opacity-50 top-navbar right-0 left-0 bottom-0 w-screen h-screen justify-end',
           mobileMenuOpen ? 'flex' : 'hidden'
         )}
+        onClick={() => setMobileMenuOpen(false)}
       >
         <div className="relative bg-light-bg dark:bg-dark-bg p-6 overflow-y-auto h-full w-1/2">
           <div className="mt-6 flow-root">

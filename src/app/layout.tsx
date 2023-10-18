@@ -33,13 +33,20 @@ export default function RootLayout({
           `${didactGothic.className} bg-light-bg text-light-text`,
           // dark
           `dark:bg-dark-bg dark:text-dark-text`,
-          // padding
-          'base-padding-x h-base-padding-top',
         ])}
       >
         <Providers>
           <NavBar initialTheme={theme} />
-          <div>{children}</div>
+          {/* <div
+            className={cn(
+              // so this div handles scrolling instead of the body
+              'h-screen overflow-auto overscroll-contain',
+              // padding
+              'base-padding-x pt-base-padding-top'
+            )}
+          > */}
+          {children}
+          {/* </div> */}
         </Providers>
       </body>
     </html>

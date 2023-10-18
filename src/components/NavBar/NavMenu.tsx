@@ -9,12 +9,14 @@ export function NavMenu() {
 
   useEffect(() => {
     // Prevent scrolling when the mobile menu is open
-    document.body.className = mobileMenuOpen
-      ? 'overflow-hidden'
-      : 'overflow-auto'
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
 
     return () => {
-      document.body.className = 'auto'
+      document.body.style.overflow = 'auto'
     }
   }, [mobileMenuOpen])
 

@@ -27,8 +27,6 @@ export default function RootLayout({
         // `${didactGothic.className} bg-light-bg text-light-text`,
         // dark
         `dark:bg-dark-bg dark:text-dark-text`,
-        // padding
-        'pt-base-padding-top base-padding-x',
       ])}
     >
       {/* // could be an ad slot component here */}

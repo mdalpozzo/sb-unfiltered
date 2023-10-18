@@ -14,11 +14,12 @@ export function NavBar({ initialTheme }: NavBarProps) {
     <header
       className={cn([
         'h-navbar',
-        `bg-inherit fixed top-0 left-0 right-0 z-50 border-b border-solid border-light-lin`,
+        `bg-inherit fixed top-0 left-0 right-0 border-b border-solid border-light-lin`,
         // dark mode
         `dark:border-dark-line dark:bg-zinc-900`,
         // shadow
         'shadow dark:shadow-zinc-600',
+        'z-40',
       ])}
     >
       <nav
@@ -28,14 +29,14 @@ export function NavBar({ initialTheme }: NavBarProps) {
         <Link
           href="/"
           aria-label="Santa Barbara Unfiltered"
-          className="flex justify-center flex-grow"
+          className="flex justify-center"
         >
           <div className="relative flex justify-center items-center">
             <LogoSVG
               className={cn(`fill-dark-bg dark:fill-light-bg`)}
-              // TODO - height value does nothing...
               width="100%"
-              height="75%"
+              // TODO - height value acts strangely...
+              // height="auto"
             />
           </div>
         </Link>

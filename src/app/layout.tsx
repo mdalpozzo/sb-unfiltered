@@ -34,12 +34,12 @@ export default function RootLayout({
           // dark
           `dark:bg-dark-bg dark:text-dark-text`,
           // padding
-          'pt-base-padding-top base-padding-x',
+          'base-padding-x h-base-padding-top',
         ])}
       >
         <Providers>
           <NavBar initialTheme={theme} />
-          {children}
+          <div>{children}</div>
         </Providers>
       </body>
     </html>

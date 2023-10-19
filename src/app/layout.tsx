@@ -14,9 +14,21 @@ const didactGothic = Didact_Gothic({
   display: 'swap',
 })
 
+// TODO research what each of these properties means
 export const metadata: Metadata = {
-  title: 'SB Unfiltered',
-  description: 'Santa Barbara living guide',
+  title: 'Santa Barbara Unfiltered',
+  description:
+    'Santa Barbara guide and news for the best food, drinks, and lifestyle.',
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+  },
+  openGraph: {
+    title: 'Santa Barbara Unfiltered',
+    description:
+      'Santa Barbara guide and news for the best food, drinks, and lifestyle.',
+    siteName: 'Santa Barbara Unfiltered',
+  },
 }
 
 export default function RootLayout({

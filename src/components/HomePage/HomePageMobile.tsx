@@ -30,6 +30,7 @@ export const HomePageMobile = ({
           description={mainStory?.description || 'error'}
           imageUrl={mainStory?.imageUrl || 'error'}
           imageDescription={mainStory?.imageDescription || 'error'}
+          hero
         />
       </div>
 
@@ -41,6 +42,7 @@ export const HomePageMobile = ({
               title={story.title}
               imageUrl={story.imageUrl}
               imageDescription={story.imageDescription}
+              hero
             />
           </div>
         )

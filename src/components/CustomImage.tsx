@@ -29,7 +29,7 @@ export const CustomImage = ({ alt, ...props }: CustomImageProps) => {
           },
           props.className,
         ])}
-        onLoadingComplete={() => setLoaded(true)}
+        onLoad={() => setLoaded(true)}
       />
     </div>
   )

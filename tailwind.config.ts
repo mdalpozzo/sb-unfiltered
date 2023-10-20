@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import colors from 'tailwindcss/colors'
+// import defaultTheme from 'tailwindcss/defaultTheme'
 
 const config: Config = {
   darkMode: 'class',
@@ -9,6 +10,10 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    // screens: {
+    //   xs: '400px',
+    //   ...defaultTheme.screens,
+    // },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

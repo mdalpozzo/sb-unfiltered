@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { cn } from '@/utils/cn'
+import { DarkModeToggle } from './DarkModeToggle'
 
 export function NavMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -62,13 +63,13 @@ export function NavMenu() {
         ref={bodyDivRef}
         // todo animate slide in transition
         className={cn(
-          'fixed bg-black bg-opacity-50 top-navbar right-0 left-0 bottom-0 w-screen h-screen justify-end',
+          'fixed bg-black bg-opacity-50 top-navbar right-0 left-0 bottom-0 w-screen justify-end',
           mobileMenuOpen ? 'flex' : 'hidden'
         )}
         onClick={() => setMobileMenuOpen(false)}
       >
         <div
-          className="relative bg-light-bg dark:bg-dark-bg p-6 overflow-y-auto h-full w-1/2"
+          className="relative bg-light-bg dark:bg-dark-bg p-6 overflow-y-auto h-full w-1/2 flex flex-col justify-between"
           onClick={(e) => {
             e.stopPropagation()
           }}
@@ -102,6 +103,8 @@ export function NavMenu() {
               </a>
             </div>
           </div>
+
+          <DarkModeToggle />
         </div>
       </div>
     </div>

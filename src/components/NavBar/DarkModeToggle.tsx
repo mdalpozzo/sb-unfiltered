@@ -80,27 +80,27 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
     //   <option value="light">Light</option>
     // </select>
 
-    <div className="w-20 sm:w-50s">
+    <div className="w-full sm:w-50s">
       <label
         htmlFor="steps-range"
-        className="w-full flex justify-between items-center gap-3"
+        className="w-full flex justify-between items-center sm:gap-3"
       >
         <SunIcon
-          className={cn('flex-1 cursor-pointer', {
+          className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
             'text-gray-400': theme !== 'light',
           })}
           onClick={onClickIcon}
           data-theme="light"
         />
         <TvIcon
-          className={cn('flex-1 cursor-pointer', {
+          className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
             'text-gray-400': theme !== 'system',
           })}
           onClick={onClickIcon}
           data-theme="system"
         />
         <MoonIcon
-          className={cn('flex-1 cursor-pointer', {
+          className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
             'text-gray-400': theme !== 'dark',
           })}
           onClick={onClickIcon}

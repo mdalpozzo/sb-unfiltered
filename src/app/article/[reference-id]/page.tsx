@@ -1,3 +1,4 @@
+import { CustomImage } from '@/components/CustomImage'
 import { fetchArticleData } from '@/contentQueries/fetchArticleData'
 import Image from 'next/image'
 
@@ -28,7 +29,7 @@ export default async function Article({ params }: ArticleProps) {
       {!!heroImage && (
         <div className="w-full flex flex-col items-center mb-14">
           <div className="w-screen story-hero-image-margin-x sm:w-5/6 aspect-video relative">
-            <Image
+            <CustomImage
               className="object-cover object-center"
               alt={heroImage.title}
               fill

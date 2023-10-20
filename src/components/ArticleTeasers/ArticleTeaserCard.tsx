@@ -1,5 +1,6 @@
-import Image from 'next/image'
 import { ArticleClickableWrapper } from './ArticleClickableWrapper'
+import { cn } from '@/utils/cn'
+import { CustomImage } from '../CustomImage'
 
 export interface ArticleTeaserCardProps {
   referenceId: string
@@ -26,8 +27,8 @@ export const ArticleTeaserCard = ({
     <ArticleClickableWrapper referenceId={referenceId}>
       <div className="relative w-full">
         <div className="w-full aspect-video relative">
-          <Image
-            className="object-cover object-center aspect-video"
+          <CustomImage
+            className={cn(['object-cover object-center aspect-video'])}
             fill
             src={imageUrl}
             alt={imageDescription}

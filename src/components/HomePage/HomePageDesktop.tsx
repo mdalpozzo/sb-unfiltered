@@ -28,11 +28,11 @@ export const HomePageDesktop = ({
 }: HomePageDesktopProps) => {
   return (
     <div>
-      <MainSection label="Highlights">
-        <div
-          className={`grid grid-cols-6 divide-x divide-solid divide-light-line dark:divide-dark-line mb-20`}
-        >
-          <div className="col-span-4 pr-4">
+      <div
+        className={`grid grid-cols-6 divide-x divide-solid divide-light-line dark:divide-dark-line mb-20`}
+      >
+        <div className="col-span-4 pr-4">
+          <MainSection label="Highlights">
             <ArticleTeaserCard
               referenceId={mainStory?.referenceId || 'error'}
               title={mainStory?.title || 'error'}
@@ -41,31 +41,39 @@ export const HomePageDesktop = ({
               imageDescription={mainStory?.imageDescription || 'error'}
               hero
             />
-          </div>
-
-          <div className="grid grid-rows-2 gap-8 col-span-2 pl-4">
-            <div className="w-full">
-              <ArticleTeaserCardSmall
-                referenceId={sideStories?.[0]?.referenceId || 'error'}
-                title={sideStories?.[0]?.title || 'error'}
-                imageUrl={sideStories?.[0]?.imageUrl || 'error'}
-                imageDescription={sideStories?.[0]?.imageDescription || 'error'}
-                hero
-              />
-            </div>
-
-            <div className="w-full">
-              <ArticleTeaserCardSmall
-                referenceId={sideStories?.[1]?.referenceId || 'error'}
-                title={sideStories?.[1]?.title || 'error'}
-                imageUrl={sideStories?.[1]?.imageUrl || 'error'}
-                imageDescription={sideStories?.[1]?.imageDescription || 'error'}
-                hero
-              />
-            </div>
-          </div>
+          </MainSection>
         </div>
-      </MainSection>
+
+        <div className="col-span-2 pl-4">
+          <MoreSectionDesktop label="Local Favorites">
+            <div className="grid grid-rows-2 gap-8 ">
+              <div className="w-full">
+                <ArticleTeaserCardSmall
+                  referenceId={sideStories?.[0]?.referenceId || 'error'}
+                  title={sideStories?.[0]?.title || 'error'}
+                  imageUrl={sideStories?.[0]?.imageUrl || 'error'}
+                  imageDescription={
+                    sideStories?.[0]?.imageDescription || 'error'
+                  }
+                  hero
+                />
+              </div>
+
+              <div className="w-full">
+                <ArticleTeaserCardSmall
+                  referenceId={sideStories?.[1]?.referenceId || 'error'}
+                  title={sideStories?.[1]?.title || 'error'}
+                  imageUrl={sideStories?.[1]?.imageUrl || 'error'}
+                  imageDescription={
+                    sideStories?.[1]?.imageDescription || 'error'
+                  }
+                  hero
+                />
+              </div>
+            </div>
+          </MoreSectionDesktop>
+        </div>
+      </div>
 
       <MoreSectionDesktop label="Hidden Gems">
         <div className="grid grid-cols-4 mb-24 gap-8">
@@ -85,7 +93,7 @@ export const HomePageDesktop = ({
         </div>
       </MoreSectionDesktop>
 
-      <MoreSectionDesktop label="Good Eats">
+      <MoreSectionDesktop label="Fast Bites">
         <div className="grid grid-cols-4 mb-24 gap-8">
           {allStories?.map((story) => {
             return (

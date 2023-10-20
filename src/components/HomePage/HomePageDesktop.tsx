@@ -128,6 +128,24 @@ export const HomePageDesktop = ({
           })}
         </div>
       </MoreSectionDesktop>
+
+      <MoreSectionDesktop label="Sartorial Standouts">
+        <div className="grid grid-cols-4 mb-24 gap-8">
+          {allStories?.map((story) => {
+            return (
+              <div key={story.referenceId}>
+                <ArticleTeaserCardXSmall
+                  referenceId={story.referenceId}
+                  title={story.title}
+                  description={story.description}
+                  imageUrl={story.imageUrl}
+                  imageDescription={story.imageDescription}
+                />
+              </div>
+            )
+          })}
+        </div>
+      </MoreSectionDesktop>
     </div>
   )
 }

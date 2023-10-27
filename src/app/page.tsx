@@ -4,6 +4,7 @@ import { fetchFrontPageStories } from '@/contentQueries/fetchFrontPageStories'
 
 export default async function Home() {
   const response = await fetchFrontPageStories()
+  // console.log('response: ', JSON.stringify(response, null, 2))
   const { mainStory, sideStories, allStories } = response
 
   return (

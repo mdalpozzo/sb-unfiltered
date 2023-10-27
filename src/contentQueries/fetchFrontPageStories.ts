@@ -2,6 +2,8 @@ import { ArticleTeaserCardProps } from '@/components/ArticleTeasers/ArticleTease
 import { ArticleTeaserCardPropsSmall } from '@/components/ArticleTeasers/ArticleTeaserCardSmall'
 import { ArticleTeaserCardXSmallProps } from '@/components/ArticleTeasers/ArticleTeaserCardXSmall'
 import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '@/constants'
+import { printPretty } from '@/utils/dev/printPretty'
+import { z } from 'zod'
 
 interface FrontPageStories {
   mainStory?: ArticleTeaserCardProps
@@ -9,7 +11,7 @@ interface FrontPageStories {
   allStories?: ArticleTeaserCardXSmallProps[]
 }
 
-export const frontPageStories = `
+export const queryFrontPageStories = `
 {
   frontPageConfigCollection {
     items {
@@ -49,6 +51,40 @@ export const frontPageStories = `
   }
 }`
 
+const HeroImagesCollectionSchema = z.object({
+  items: z.array(
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      url: z.string(),
+    })
+  ),
+})
+
+const StorySchema = z.object({
+  referenceId: z.string(),
+  title: z.string(),
+  subtitle: z.string(),
+  body: z.string(),
+  heroImagesCollection: HeroImagesCollectionSchema,
+})
+
+const SlotSchema = z.object({
+  slotName: z.string(),
+  storiesCollection: z.object({
+    items: z.array(StorySchema),
+  }),
+})
+
+const ResponseDataSchema = z.object({
+  frontPageConfigCollection: z.object({
+    items: z.array(SlotSchema),
+  }),
+  allArticles: z.object({
+    items: z.array(StorySchema),
+  }),
+})
+
 export const fetchFrontPageStories = async (): Promise<FrontPageStories> => {
   const res = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/`,
@@ -58,23 +94,44 @@ export const fetchFrontPageStories = async (): Promise<FrontPageStories> => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${CONTENTFUL_API_ACCESS_TOKEN}`,
       },
-      body: JSON.stringify({ query: frontPageStories }),
+      body: JSON.stringify({ query: queryFrontPageStories }),
     }
   )
 
   const { data, errors } = await res.json()
 
-  // TODO handle errors and validation
+  printPretty('data: ', data)
 
   if (errors) {
     console.log('errors: ', errors)
+    throw Error('Error: fetching fetchFrontPageStories')
   }
 
-  const mainStoryData = data?.frontPageConfigCollection?.items.find(
+  const zodResponse = ResponseDataSchema.safeParse(data)
+
+  if (!zodResponse.success) {
+    const errorMessage =
+      'Error: fetching fetchFrontPageStories - data is malformed'
+    console.log(errorMessage)
+    console.log(zodResponse.error) // this will give you the zod parsing error
+    throw Error(errorMessage)
+  }
+
+  const parsedData = zodResponse.data
+
+  const topStoriesReferenceIds: string[] = []
+
+  const mainStoryData = parsedData.frontPageConfigCollection.items.find(
     (item: any) => {
-      return item?.slotName === 'mainStory'
+      if (item.slotName === 'mainStory') {
+        item.storiesCollection.items.forEach((story: any) => {
+          topStoriesReferenceIds.push(story.referenceId)
+        })
+
+        return true
+      }
     }
-  )?.storiesCollection?.items[0]
+  )?.storiesCollection.items[0]
 
   let mainStory
 
@@ -83,35 +140,45 @@ export const fetchFrontPageStories = async (): Promise<FrontPageStories> => {
       referenceId: mainStoryData.referenceId,
       title: mainStoryData.title,
       description: mainStoryData.subtitle,
-      imageUrl: mainStoryData.heroImagesCollection?.items?.[0]?.url,
-      imageDescription:
-        mainStoryData.heroImagesCollection?.items?.[0]?.description,
+      imageUrl: mainStoryData.heroImagesCollection.items[0].url,
+      imageDescription: mainStoryData.heroImagesCollection.items[0].description,
     }
   }
 
-  const sideStories = data?.frontPageConfigCollection?.items
+  const sideStories = parsedData.frontPageConfigCollection.items
     .find((item: any) => {
-      return item?.slotName === 'sideStories'
+      if (item.slotName === 'sideStories') {
+        item.storiesCollection.items.forEach((story: any) => {
+          topStoriesReferenceIds.push(story.referenceId)
+        })
+
+        return true
+      }
     })
-    ?.storiesCollection?.items.map((item: any) => {
+    ?.storiesCollection.items.map((item: any) => {
       return {
         referenceId: item.referenceId,
         title: item.title,
         description: item.subtitle,
-        imageUrl: item.heroImagesCollection?.items?.[0]?.url,
-        imageDescription: item.heroImagesCollection?.items?.[0]?.description,
+        imageUrl: item.heroImagesCollection.items[0].url,
+        imageDescription: item.heroImagesCollection.items[0].description,
       }
     })
 
-  const allStories = data?.allArticles?.items.map((item: any) => {
-    return {
-      referenceId: item.referenceId,
-      title: item.title,
-      description: item.subtitle,
-      imageUrl: item.heroImagesCollection?.items?.[0]?.url,
-      imageDescription: item.heroImagesCollection?.items?.[0]?.description,
-    }
-  })
+  const allStories = parsedData.allArticles.items
+    .filter((item) => {
+      // filter out top/highlighted stories
+      return !topStoriesReferenceIds.includes(item.referenceId)
+    })
+    .map((item: any) => {
+      return {
+        referenceId: item.referenceId,
+        title: item.title,
+        description: item.subtitle,
+        imageUrl: item.heroImagesCollection.items[0].url,
+        imageDescription: item.heroImagesCollection.items[0].description,
+      }
+    })
 
   return { mainStory, sideStories, allStories }
 }

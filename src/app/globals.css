@@ -43,4 +43,12 @@
   .story-hero-image-margin-x {
     @apply -mx-6 sm:-mx-16;
   }
+
+  .app-bg {
+    @apply dark:bg-dark-bg dark:text-dark-text;
+  }
+
+  .theme-bg {
+    @apply bg-green-100 dark:bg-green-200;
+  }
 }

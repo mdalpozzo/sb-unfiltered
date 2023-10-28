@@ -1,5 +1,29 @@
-a {
+.article-body a {
   text-decoration: unset;
   color: unset;
   /* color: green; */
+}
+
+.article-body h3 {
+  @apply text-4xl mb-4 mt-6 w-full text-center;
+}
+
+.article-body h5 {
+  @apply text-xl mb-4 mt-6 w-full underline;
+}
+
+.article-body p {
+  @apply mb-4;
+}
+
+.article-body ul li {
+  list-style-type: disc;
+  @apply ml-10 mb-4;
+}
+
+.article-body img {
+  @apply w-2/3 aspect-video mt-20 object-cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

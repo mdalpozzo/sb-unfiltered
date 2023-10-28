@@ -25,13 +25,14 @@ export default function RootLayout({
     <div
       className={cn([
         // `${didactGothic.className} bg-light-bg text-light-text`,
-        // dark
-        `dark:bg-dark-bg dark:text-dark-text`,
+        // dark,
       ])}
     >
-      {/* // could be an ad slot component here */}
-      {/* <NavBar initialTheme={theme} /> */}
-      {children}
+      <div className="mx-20 mt-20 pb-20">
+        {/* // could be an ad slot component here */}
+        {/* <NavBar initialTheme={theme} /> */}
+        {children}
+      </div>
     </div>
   )
 }

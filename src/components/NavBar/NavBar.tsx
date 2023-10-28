@@ -14,7 +14,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
     <header
       className={cn([
         'h-navbar',
-        'bg-light-bg fixed top-0 left-0 right-0 border-b border-solid border-light-lin',
+        'bg-light-bg fixed top-0 left-0 right-0 border-b border-solid border-light-line',
         // dark mode
         `dark:border-dark-line dark:bg-zinc-900`,
         // shadow

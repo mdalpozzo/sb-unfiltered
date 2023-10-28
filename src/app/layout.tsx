@@ -6,6 +6,8 @@ import { Providers } from '@/components/Providers'
 import { DEFAULT_THEME } from '@/constants'
 import { getThemeCookie } from '@/theme/getThemeCookie'
 import { cn } from '@/utils/cn'
+import { NavBanner } from '@/components/NavBanner'
+import { Footer } from '@/components/Footer/Footer'
 
 const didactGothic = Didact_Gothic({
   weight: ['400'],
@@ -39,28 +41,23 @@ export default function RootLayout({
   const theme = getThemeCookie() || DEFAULT_THEME
 
   return (
-    <html lang="en" className={theme} style={{ colorScheme: theme }}>
+    <html
+      lang="en"
+      className={cn([theme, 'theme-bg'])}
+      style={{ colorScheme: theme }}
+    >
       <body
         className={cn([
           `${didactGothic.className} bg-light-bg text-light-text`,
           // dark
-          `dark:bg-dark-bg dark:text-dark-text`,
-          // padding
-          'base-padding-x pt-base-padding-top',
+          'app-bg',
         ])}
       >
         <Providers>
           <NavBar initialTheme={theme} />
-          {/* <div
-            className={cn(
-              // so this div handles scrolling instead of the body
-              'h-screen overflow-auto overscroll-contain',
-              // padding
-              'base-padding-x pt-base-padding-top'
-            )}
-          > */}
+          <NavBanner />
           {children}
-          {/* </div> */}
+          <Footer />
         </Providers>
       </body>
     </html>

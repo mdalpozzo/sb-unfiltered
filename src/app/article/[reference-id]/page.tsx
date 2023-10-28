@@ -1,6 +1,5 @@
 import { CustomImage } from '@/components/CustomImage'
 import { fetchArticleData } from '@/contentQueries/fetchArticleData'
-import Image from 'next/image'
 
 interface ArticleProps {
   params: {
@@ -14,8 +13,6 @@ export default async function Article({ params }: ArticleProps) {
   })
 
   const heroImage = article?.images?.[0]
-
-  console.log('article?.bodyRichText: ', article?.bodyRichText)
 
   return (
     <article className="w-full">
@@ -42,9 +39,9 @@ export default async function Article({ params }: ArticleProps) {
       )}
 
       <div
-        className="w-full max-w-full font-serif text-lg flex-wrap break-all overflow-hidden"
+        className="article-body w-full max-w-full font-serif text-lg flex-wrap break-word overflow-hidden"
         dangerouslySetInnerHTML={{
-          __html: article?.bodyRichText || '',
+          __html: article?.bodyHtml || '',
         }}
       />
     </article>

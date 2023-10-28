@@ -2,7 +2,6 @@ import { ArticleTeaserCardProps } from '@/components/ArticleTeasers/ArticleTease
 import { ArticleTeaserCardPropsSmall } from '@/components/ArticleTeasers/ArticleTeaserCardSmall'
 import { ArticleTeaserCardXSmallProps } from '@/components/ArticleTeasers/ArticleTeaserCardXSmall'
 import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '@/constants'
-import { printPretty } from '@/utils/dev/printPretty'
 import { z } from 'zod'
 
 interface FrontPageStories {
@@ -99,8 +98,6 @@ export const fetchFrontPageStories = async (): Promise<FrontPageStories> => {
   )
 
   const { data, errors } = await res.json()
-
-  printPretty('data: ', data)
 
   if (errors) {
     console.log('errors: ', errors)

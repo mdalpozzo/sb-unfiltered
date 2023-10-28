@@ -28,7 +28,7 @@ export default function RootLayout({
         // dark,
       ])}
     >
-      <div className="mx-20 mt-20 pb-20">
+      <div className="mt-20 pb-20">
         {/* // could be an ad slot component here */}
         {/* <NavBar initialTheme={theme} /> */}
         {children}

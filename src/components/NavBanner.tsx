@@ -25,9 +25,12 @@ const MOCK_CATEGORIES = [
 
 export function NavBanner() {
   return (
-    <div className="theme-bg w-full sticky pt-navbar top-0 z-20">
+    <div className="theme-bg w-full md:sticky pt-navbar top-0 z-20">
       <div
-        className={cn(['px-4 py-2', 'w-full flex flex-row gap-2 justify-end'])}
+        className={cn([
+          'px-4 py-2',
+          'w-full flex flex-row md:justify-end gap-2 overflow-x-scroll',
+        ])}
       >
         {MOCK_CATEGORIES.map((category) => {
           return (

@@ -32,12 +32,12 @@ export function NavBar({ initialTheme }: NavBarProps) {
       const currentScrollPos = window.scrollY
 
       const scrollDiff = currentScrollPos - prevScrollPos
-      // const scrollStart = currentScrollPos === 0 && prevScrollPos !== 0
-      const scrollDown = scrollDiff > 0
+      const scrollStart = currentScrollPos === 0 && prevScrollPos !== 0
+      // const scrollDown = scrollDiff > 0
 
       if (
-        // !scrollStart &&
-        !scrollDown &&
+        !scrollStart &&
+        // !scrollDown &&
         Math.abs(scrollDiff) < 200
       )
         return

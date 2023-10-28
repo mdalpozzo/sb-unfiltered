@@ -8,7 +8,7 @@ export default async function Home() {
   const { mainStory, sideStories, allStories } = response
 
   return (
-    <main className={cn('w-full min-h-screen', 'base-padding-x', 'pt-14')}>
+    <main className={cn('w-full min-h-screen', 'base-padding-x', 'pt-10')}>
       <div className="hidden sm:flex">
         <HomePageDesktop
           mainStory={mainStory}

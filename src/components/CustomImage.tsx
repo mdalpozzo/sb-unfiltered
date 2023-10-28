@@ -22,7 +22,7 @@ export const CustomImage = ({ alt, ...props }: CustomImageProps) => {
         alt={alt}
         {...props}
         className={cn([
-          'transition-opacity duration-[900ms] ease-in-out',
+          'transition-opacity duration-[800ms] ease-in-out',
           {
             'opacity-100': loaded,
             'opacity-0': !loaded,

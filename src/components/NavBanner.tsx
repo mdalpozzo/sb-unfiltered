@@ -59,8 +59,12 @@ export function NavBanner() {
       className={cn([
         'fixed',
         'theme-bg w-full top-navbar z-20',
-        'transition-[height] ease-in-out duration-200',
-        visible ? 'h-16' : 'h-0',
+        'transition-all ease-in-out duration-500',
+        visible ? 'opacity-100' : 'opacity-0',
+        // 'transition-[height] ease-in-out duration-200',
+        // visible ? 'h-16' : 'h-0',
+        // 'transition-transform ease-in-out duration-200',
+        visible ? 'translate-y-0' : '-translate-y-16',
         'overflow-hidden',
         'flex items-center',
       ])}

@@ -34,6 +34,7 @@ const config: Config = {
       },
       spacing: {
         navbar: '4rem',
+        navbanner: '8rem',
         'base-padding-top': '7rem',
       },
     },

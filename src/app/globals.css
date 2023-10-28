@@ -49,6 +49,10 @@
   }
 
   .theme-bg {
-    @apply bg-green-100 dark:bg-green-200;
+    @apply bg-green-200;
+  }
+
+  .theme-bg-complimentary {
+    @apply bg-green-300;
   }
 }

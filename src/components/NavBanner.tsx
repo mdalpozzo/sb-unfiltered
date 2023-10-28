@@ -79,7 +79,7 @@ export function NavBanner() {
           return (
             <div
               key={category.name}
-              className="py-2 px-5 bg-green-200 dark:bg-green-300 rounded-md"
+              className="py-2 px-5 theme-bg-complimentary rounded-md"
             >
               <p className="text-zinc-600">{category.name}</p>
             </div>

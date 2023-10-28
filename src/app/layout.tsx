@@ -8,7 +8,7 @@ import { getThemeCookie } from '@/theme/getThemeCookie'
 import { cn } from '@/utils/cn'
 import { NavBanner } from '@/components/NavBanner'
 import { Footer } from '@/components/Footer/Footer'
-import AppScripts from '@/components/AppScripts'
+import { GTMNoScript, GTMScript } from '@/components/GTMScripts'
 
 const didactGothic = Didact_Gothic({
   weight: ['400'],
@@ -47,7 +47,7 @@ export default function RootLayout({
       className={cn([theme, 'theme-bg'])}
       style={{ colorScheme: theme }}
     >
-      <AppScripts />
+      <GTMScript />
 
       <body
         className={cn([
@@ -57,6 +57,8 @@ export default function RootLayout({
           'pt-navbanner',
         ])}
       >
+        <GTMNoScript />
+
         <Providers>
           <NavBar initialTheme={theme} />
           <NavBanner />

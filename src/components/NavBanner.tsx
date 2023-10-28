@@ -1,6 +1,7 @@
 'use client'
 
 import { cn } from '@/utils/cn'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const MOCK_CATEGORIES = [
@@ -59,12 +60,16 @@ export function NavBanner() {
       className={cn([
         'fixed',
         'theme-bg w-full top-navbar z-20',
+
+        // auto hide ======= START
         'transition-all ease-in-out duration-500',
         visible ? 'opacity-100' : 'opacity-0',
         // 'transition-[height] ease-in-out duration-200',
         // visible ? 'h-16' : 'h-0',
         // 'transition-transform ease-in-out duration-200',
         visible ? 'translate-y-0' : '-translate-y-16',
+        // auto hide ======= END
+
         'overflow-hidden',
         'flex items-center',
       ])}
@@ -77,12 +82,16 @@ export function NavBanner() {
       >
         {MOCK_CATEGORIES.map((category) => {
           return (
-            <div
+            <Link
+              href={''} // TODO: Add link
               key={category.name}
-              className="py-2 px-5 theme-bg-complimentary rounded-md"
+              // className="py-2 px-5 theme-bg-complimentary rounded-md"
+              className="py-2 px-5"
             >
-              <p className="text-zinc-600">{category.name}</p>
-            </div>
+              <p className="text-zinc-600 hover:text-emerald-500 font-extrabold text-lg">
+                {category.name}
+              </p>
+            </Link>
           )
         })}
       </div>

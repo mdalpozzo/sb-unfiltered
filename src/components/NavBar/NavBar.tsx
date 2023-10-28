@@ -26,19 +26,29 @@ export function NavBar({ initialTheme }: NavBarProps) {
 
   useEffect(() => {
     let prevScrollPos = window.scrollY
+    let lastPath = window.location
 
     // TODO figure out how to prevent triggering this on in app navigation
     const handleScroll = throttle(() => {
       const currentScrollPos = window.scrollY
+      // console.log(
+      //   'handleScroll- ',
+      //   'curr: ',
+      //   currentScrollPos,
+      //   'prev: ',
+      //   prevScrollPos
+      // )
 
+      const pathChanged = lastPath !== window.location
       const scrollDiff = currentScrollPos - prevScrollPos
       const scrollStart = currentScrollPos === 0 && prevScrollPos !== 0
       // const scrollDown = scrollDiff > 0
 
       if (
-        !scrollStart &&
-        // !scrollDown &&
-        Math.abs(scrollDiff) < 200
+        pathChanged ||
+        (!scrollStart &&
+          // !scrollDown &&
+          Math.abs(scrollDiff) < 200)
       )
         return
 
@@ -49,6 +59,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
       }
 
       prevScrollPos = currentScrollPos
+      lastPath = window.location
     }, 100)
 
     window.addEventListener('scroll', handleScroll)

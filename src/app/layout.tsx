@@ -8,6 +8,7 @@ import { getThemeCookie } from '@/theme/getThemeCookie'
 import { cn } from '@/utils/cn'
 import { NavBanner } from '@/components/NavBanner'
 import { Footer } from '@/components/Footer/Footer'
+import AppScripts from '@/components/AppScripts'
 
 const didactGothic = Didact_Gothic({
   weight: ['400'],
@@ -16,7 +17,7 @@ const didactGothic = Didact_Gothic({
   display: 'swap',
 })
 
-// TODO research what each of these properties means
+// TODO research the SEO here
 export const metadata: Metadata = {
   title: 'Santa Barbara Unfiltered',
   description:
@@ -46,6 +47,8 @@ export default function RootLayout({
       className={cn([theme, 'theme-bg'])}
       style={{ colorScheme: theme }}
     >
+      <AppScripts />
+
       <body
         className={cn([
           `${didactGothic.className} bg-light-bg text-light-text`,

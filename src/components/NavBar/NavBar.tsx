@@ -1,15 +1,61 @@
+'use client'
+
 // import Image from 'next/image'
 import Link from 'next/link'
 import { DarkModeToggle } from './DarkModeToggle'
 import { LogoSVG } from '@/components/LogoSVG'
 import { cn } from '@/utils/cn'
 import { NavMenu } from './NavMenu'
+import { useAppStore } from '@/state/store'
+import { useEffect, useState } from 'react'
+import { NavBanner } from '../NavBanner'
+import { useShallow } from 'zustand/react/shallow'
+import { throttle } from 'lodash'
 
 interface NavBarProps {
   initialTheme?: string
 }
 
 export function NavBar({ initialTheme }: NavBarProps) {
+  const { navbarVisible, setNavbarVisible } = useAppStore(
+    useShallow((state) => ({
+      navbarVisible: state.navbarVisible,
+      setNavbarVisible: state.setNavbarVisible,
+    }))
+  )
+
+  useEffect(() => {
+    let prevScrollPos = window.scrollY
+
+    // TODO figure out how to prevent triggering this on in app navigation
+    const handleScroll = throttle(() => {
+      const currentScrollPos = window.scrollY
+
+      const scrollDiff = currentScrollPos - prevScrollPos
+      // const scrollStart = currentScrollPos === 0 && prevScrollPos !== 0
+      const scrollDown = scrollDiff > 0
+
+      if (
+        // !scrollStart &&
+        !scrollDown &&
+        Math.abs(scrollDiff) < 200
+      )
+        return
+
+      if (scrollDiff <= 0) {
+        setNavbarVisible(true)
+      } else {
+        setNavbarVisible(false)
+      }
+
+      prevScrollPos = currentScrollPos
+    }, 100)
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [setNavbarVisible])
+
   return (
     <header
       className={cn([
@@ -22,6 +68,15 @@ export function NavBar({ initialTheme }: NavBarProps) {
         // shadow
         // 'shadow dark:shadow-zinc-600',
         'z-30',
+
+        // auto hide ======= START
+        'transition-all ease-in-out duration-500',
+        navbarVisible ? 'opacity-100' : 'opacity-0',
+        // 'transition-[height] ease-in-out duration-200',
+        // navbarVisible ? 'h-16' : 'h-0',
+        // 'transition-transform ease-in-out duration-200',
+        navbarVisible ? 'translate-y-0' : '-translate-y-16',
+        // auto hide ======= END
       ])}
     >
       <nav
@@ -55,6 +110,8 @@ export function NavBar({ initialTheme }: NavBarProps) {
           </div>
         </div>
       </nav>
+
+      <NavBanner />
     </header>
   )
 }

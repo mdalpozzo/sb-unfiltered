@@ -1,8 +1,5 @@
-'use client'
-
 import { cn } from '@/utils/cn'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 
 const MOCK_CATEGORIES = [
   {
@@ -28,48 +25,11 @@ const MOCK_CATEGORIES = [
 ]
 
 export function NavBanner() {
-  const [prevScrollPos, setPrevScrollPos] = useState(0)
-  const [visible, setVisible] = useState(true)
-
-  const handleScroll = () => {
-    const currentScrollPos = window.scrollY
-
-    const scrollDiff = currentScrollPos - prevScrollPos
-    const scrollStart = currentScrollPos === 0
-    const scrollDown = scrollDiff > 0
-
-    if (!scrollStart && !scrollDown && Math.abs(scrollDiff) < 200) return
-
-    if (scrollDiff <= 0) {
-      setVisible(true)
-    } else {
-      setVisible(false)
-    }
-
-    setPrevScrollPos(currentScrollPos)
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  })
-
   return (
     <div
       className={cn([
         'fixed',
         'theme-bg w-full top-navbar z-20',
-
-        // auto hide ======= START
-        'transition-all ease-in-out duration-500',
-        visible ? 'opacity-100' : 'opacity-0',
-        // 'transition-[height] ease-in-out duration-200',
-        // visible ? 'h-16' : 'h-0',
-        // 'transition-transform ease-in-out duration-200',
-        visible ? 'translate-y-0' : '-translate-y-16',
-        // auto hide ======= END
-
         'overflow-hidden',
         'flex items-center',
       ])}

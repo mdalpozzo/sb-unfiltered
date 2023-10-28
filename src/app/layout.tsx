@@ -61,7 +61,7 @@ export default function RootLayout({
 
         <Providers>
           <NavBar initialTheme={theme} />
-          <NavBanner />
+
           {children}
           <Footer />
         </Providers>

@@ -36,6 +36,7 @@ export default async function Article({ params }: ArticleProps) {
                 fill
                 src={heroImage.url}
                 priority
+                sizes="(min-width: 768px) 60vw, 100%"
               />
             </div>
             <p className="text-sm md:hidden">{heroImage.description}</p>

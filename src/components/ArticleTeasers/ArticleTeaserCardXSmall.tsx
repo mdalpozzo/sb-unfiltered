@@ -7,6 +7,7 @@ export interface ArticleTeaserCardXSmallProps {
   imageDescription: string
   title: string
   description: string
+  imageSizes?: string
 }
 
 export const ArticleTeaserCardXSmall = ({
@@ -15,13 +16,15 @@ export const ArticleTeaserCardXSmall = ({
   imageDescription,
   description,
   referenceId,
+  imageSizes,
 }: ArticleTeaserCardXSmallProps) => {
   return (
     <ArticleClickableWrapper referenceId={referenceId}>
-      <div className="relative w-full aspect-xs-teaser">
+      <div className="w-full aspect-xs-teaser">
         <CustomImage
           className="object-cover object-center"
           fill
+          sizes={imageSizes}
           src={imageUrl}
           alt={imageDescription}
         />

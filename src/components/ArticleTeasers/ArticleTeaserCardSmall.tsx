@@ -7,6 +7,7 @@ export interface ArticleTeaserCardPropsSmall {
   imageDescription: string
   title: string
   hero?: boolean
+  imageSizes?: string
 }
 
 export const ArticleTeaserCardSmall = ({
@@ -15,20 +16,24 @@ export const ArticleTeaserCardSmall = ({
   imageDescription,
   referenceId,
   hero,
+  imageSizes,
 }: ArticleTeaserCardPropsSmall) => {
   if (imageUrl === 'error') {
     return <p>error</p>
   }
 
+  console.log('ArticleTeaserCardSmall: ', imageSizes)
+
   return (
     <ArticleClickableWrapper referenceId={referenceId}>
-      <div className="relative w-full aspect-video">
+      <div className="w-full aspect-video">
         <CustomImage
           className="object-cover object-center aspect-video"
           fill
           src={imageUrl}
           alt={imageDescription}
           priority={hero}
+          sizes={imageSizes}
         />
       </div>
 

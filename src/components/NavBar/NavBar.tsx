@@ -31,13 +31,13 @@ export function NavBar({ initialTheme }: NavBarProps) {
     // TODO figure out how to prevent triggering this on in app navigation
     const handleScroll = throttle(() => {
       const currentScrollPos = window.scrollY
-      // console.log(
-      //   'handleScroll- ',
-      //   'curr: ',
-      //   currentScrollPos,
-      //   'prev: ',
-      //   prevScrollPos
-      // )
+      console.log(
+        'handleScroll- ',
+        'curr: ',
+        currentScrollPos,
+        'prev: ',
+        prevScrollPos
+      )
 
       const pathChanged = lastPath !== window.location
       const scrollDiff = currentScrollPos - prevScrollPos

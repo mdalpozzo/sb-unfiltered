@@ -40,6 +40,7 @@ export const HomePageDesktop = ({
               imageUrl={mainStory?.imageUrl || 'error'}
               imageDescription={mainStory?.imageDescription || 'error'}
               hero
+              imageSizes="50vw"
             />
           </MainSection>
         </div>
@@ -56,6 +57,7 @@ export const HomePageDesktop = ({
                     sideStories?.[0]?.imageDescription || 'error'
                   }
                   hero
+                  imageSizes="33vw"
                 />
               </div>
 
@@ -68,6 +70,7 @@ export const HomePageDesktop = ({
                     sideStories?.[1]?.imageDescription || 'error'
                   }
                   hero
+                  imageSizes="33vw"
                 />
               </div>
             </div>
@@ -86,6 +89,7 @@ export const HomePageDesktop = ({
                   description={story.description}
                   imageUrl={story.imageUrl}
                   imageDescription={story.imageDescription}
+                  imageSizes="25vw"
                 />
               </div>
             )
@@ -104,6 +108,7 @@ export const HomePageDesktop = ({
                   description={story.description}
                   imageUrl={story.imageUrl}
                   imageDescription={story.imageDescription}
+                  imageSizes="25vw"
                 />
               </div>
             )
@@ -122,6 +127,7 @@ export const HomePageDesktop = ({
                   description={story.description}
                   imageUrl={story.imageUrl}
                   imageDescription={story.imageDescription}
+                  imageSizes="25vw"
                 />
               </div>
             )
@@ -140,6 +146,7 @@ export const HomePageDesktop = ({
                   description={story.description}
                   imageUrl={story.imageUrl}
                   imageDescription={story.imageDescription}
+                  imageSizes="25vw"
                 />
               </div>
             )
@@ -158,6 +165,7 @@ export const HomePageDesktop = ({
                   description={story.description}
                   imageUrl={story.imageUrl}
                   imageDescription={story.imageDescription}
+                  imageSizes="25vw"
                 />
               </div>
             )

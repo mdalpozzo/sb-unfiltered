@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn([theme, 'app-bg'])}
+      className={cn(['app-bg', theme])}
       style={{ colorScheme: theme }}
     >
       <GTMScript />

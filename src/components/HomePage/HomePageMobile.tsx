@@ -31,6 +31,7 @@ export const HomePageMobile = ({
           imageUrl={mainStory?.imageUrl || 'error'}
           imageDescription={mainStory?.imageDescription || 'error'}
           hero
+          imageSizes="100%"
         />
       </div>
 
@@ -43,6 +44,7 @@ export const HomePageMobile = ({
               imageUrl={story.imageUrl}
               imageDescription={story.imageDescription}
               hero
+              imageSizes="100%"
             />
           </div>
         )
@@ -58,6 +60,7 @@ export const HomePageMobile = ({
               title={story.title}
               imageUrl={story.imageUrl}
               imageDescription={story.imageDescription}
+              imageSizes="100%"
             />
           </div>
         )

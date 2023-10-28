@@ -15,12 +15,12 @@ export const CustomImage = ({ alt, ...props }: CustomImageProps) => {
     <div
       className={cn([
         'bg-zinc-100 dark:bg-zinc-950 w-full h-full',
+        'relative',
         // { 'animate-pulse': !loaded },
       ])}
     >
       <Image
         alt={alt}
-        {...props}
         className={cn([
           'transition-opacity duration-[800ms] ease-in-out',
           {
@@ -30,6 +30,8 @@ export const CustomImage = ({ alt, ...props }: CustomImageProps) => {
           props.className,
         ])}
         onLoad={() => setLoaded(true)}
+        sizes="50vw"
+        {...props}
       />
     </div>
   )

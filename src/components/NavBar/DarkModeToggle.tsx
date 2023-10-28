@@ -87,21 +87,21 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
       >
         <SunIcon
           className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
-            'text-gray-400': theme !== 'light',
+            // 'text-gray-400': theme !== 'light',
           })}
           onClick={onClickIcon}
           data-theme="light"
         />
         <TvIcon
           className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
-            'text-gray-400': theme !== 'system',
+            // 'text-gray-400': theme !== 'system',
           })}
           onClick={onClickIcon}
           data-theme="system"
         />
         <MoonIcon
           className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
-            'text-gray-400': theme !== 'dark',
+            // 'text-gray-400': theme !== 'dark',
           })}
           onClick={onClickIcon}
           data-theme="dark"

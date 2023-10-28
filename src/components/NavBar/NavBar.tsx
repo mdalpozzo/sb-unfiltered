@@ -72,7 +72,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
         // auto hide ======= START
         'transition-all ease-in-out duration-500',
         navbarVisible ? 'opacity-100' : 'opacity-0',
-        navbarVisible ? '' : '-translate-y-16',
+        navbarVisible ? '' : '-translate-y-navbar',
         // auto hide ======= END
       ])}
     >

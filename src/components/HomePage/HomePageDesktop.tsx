@@ -31,7 +31,7 @@ export const HomePageDesktop = ({
       <div
         className={`grid grid-cols-6 divide-x divide-solid divide-light-line dark:divide-dark-line mb-20`}
       >
-        <div className="col-span-4 pr-4">
+        <div className="col-span-4 pr-8">
           <MainSection label="Highlights">
             <ArticleTeaserCard
               referenceId={mainStory?.referenceId || 'error'}
@@ -44,9 +44,9 @@ export const HomePageDesktop = ({
           </MainSection>
         </div>
 
-        <div className="col-span-2 pl-4">
+        <div className="col-span-2 pl-8">
           <MoreSectionDesktop label="News & Events">
-            <div className="grid grid-rows-2 gap-8 ">
+            <div className="grid grid-rows-2 gap-8">
               <div className="w-full">
                 <ArticleTeaserCardSmall
                   referenceId={sideStories?.[0]?.referenceId || 'error'}

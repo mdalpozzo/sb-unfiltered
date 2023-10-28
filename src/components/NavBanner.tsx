@@ -1,4 +1,7 @@
+'use client'
+
 import { cn } from '@/utils/cn'
+import { useEffect, useState } from 'react'
 
 const MOCK_CATEGORIES = [
   {
@@ -24,8 +27,44 @@ const MOCK_CATEGORIES = [
 ]
 
 export function NavBanner() {
+  const [prevScrollPos, setPrevScrollPos] = useState(0)
+  const [visible, setVisible] = useState(true)
+
+  const handleScroll = () => {
+    const currentScrollPos = window.scrollY
+
+    const scrollDiff = currentScrollPos - prevScrollPos
+    const scrollStart = currentScrollPos === 0
+    const scrollDown = scrollDiff > 0
+
+    if (!scrollStart && !scrollDown && Math.abs(scrollDiff) < 200) return
+
+    if (scrollDiff <= 0) {
+      setVisible(true)
+    } else {
+      setVisible(false)
+    }
+
+    setPrevScrollPos(currentScrollPos)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  })
+
   return (
-    <div className="theme-bg w-full md:sticky pt-navbar top-0 z-20">
+    <div
+      className={cn([
+        'fixed',
+        'theme-bg w-full top-navbar z-20',
+        'transition-[height] ease-in-out duration-200',
+        visible ? 'h-16' : 'h-0',
+        'overflow-hidden',
+        'flex items-center',
+      ])}
+    >
       <div
         className={cn([
           'px-4 py-2',

@@ -6,7 +6,6 @@ import { Providers } from '@/components/Providers'
 import { DEFAULT_THEME } from '@/constants'
 import { getThemeCookie } from '@/theme/getThemeCookie'
 import { cn } from '@/utils/cn'
-import { NavBanner } from '@/components/NavBanner'
 import { Footer } from '@/components/Footer/Footer'
 import { GTMNoScript, GTMScript } from '@/components/GTMScripts'
 

@@ -7,7 +7,7 @@ import { LogoSVG } from '@/components/LogoSVG'
 import { cn } from '@/utils/cn'
 import { NavMenu } from './NavMenu'
 import { useAppStore } from '@/state/store'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { NavBanner } from '../NavBanner'
 import { useShallow } from 'zustand/react/shallow'
 import { throttle } from 'lodash'
@@ -72,10 +72,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
         // auto hide ======= START
         'transition-all ease-in-out duration-500',
         navbarVisible ? 'opacity-100' : 'opacity-0',
-        // 'transition-[height] ease-in-out duration-200',
-        // navbarVisible ? 'h-16' : 'h-0',
-        // 'transition-transform ease-in-out duration-200',
-        navbarVisible ? 'translate-y-0' : '-translate-y-16',
+        navbarVisible ? '' : '-translate-y-16',
         // auto hide ======= END
       ])}
     >

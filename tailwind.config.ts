@@ -27,10 +27,11 @@ const config: Config = {
         'light-bg': colors.zinc[50],
         'light-text': colors.zinc[950],
         'light-line': colors.zinc[300],
-        // 'dark-bg': colors.zinc[900],
+        'nav-bg-light': colors.zinc[50],
         'dark-bg': colors.black,
         'dark-text': colors.zinc[100],
         'dark-line': colors.zinc[500],
+        'nav-bg-dark': colors.black,
       },
       spacing: {
         navbar: '4rem',

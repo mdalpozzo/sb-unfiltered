@@ -22,8 +22,6 @@ export const ArticleTeaserCardSmall = ({
     return <p>error</p>
   }
 
-  console.log('ArticleTeaserCardSmall: ', imageSizes)
-
   return (
     <ArticleClickableWrapper referenceId={referenceId}>
       <div className="w-full aspect-video">

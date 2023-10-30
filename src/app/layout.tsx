@@ -41,19 +41,16 @@ export default function RootLayout({
   const theme = getThemeCookie() || DEFAULT_THEME
 
   return (
-    <html
-      lang="en"
-      className={cn(['app-bg', theme])}
-      style={{ colorScheme: theme }}
-    >
+    <html lang="en" className={cn([theme])} style={{ colorScheme: theme }}>
       <GTMScript />
 
       <body
         className={cn([
-          `${didactGothic.className} bg-light-bg text-light-text`,
+          `${didactGothic.className}`,
           // dark
           'app-bg',
           'pt-navbanner',
+          'h-full',
         ])}
       >
         <GTMNoScript />

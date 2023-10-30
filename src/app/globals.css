@@ -45,7 +45,7 @@
   }
 
   .app-bg {
-    @apply dark:bg-dark-bg dark:text-dark-text;
+    @apply dark:bg-dark-bg dark:text-dark-text bg-light-bg text-light-text;
   }
 
   .theme-bg {

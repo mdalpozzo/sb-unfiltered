@@ -61,13 +61,13 @@ export function NavBar({ initialTheme }: NavBarProps) {
     <header
       className={cn([
         'h-navbar',
-        'bg-light-bg fixed top-0 left-0 right-0',
+        'bg-nav-bg-light fixed top-0 left-0 right-0',
         //border
         'border-solid border-light-line',
         // dark mode
-        `dark:border-dark-line dark:bg-zinc-900`,
+        `dark:border-dark-line dark:bg-nav-bg-dark`,
         // shadow
-        // 'shadow dark:shadow-zinc-600',
+        'shadow dark:shadow-zinc-600',
         'z-30',
 
         // auto hide ======= START
@@ -78,7 +78,9 @@ export function NavBar({ initialTheme }: NavBarProps) {
       ])}
     >
       <nav
-        className="relative h-full w-full flex items-center justify-center p-1 lg:px-8"
+        className={cn(
+          'relative h-full w-full flex items-center justify-center p-1 lg:px-8'
+        )}
         aria-label="Global"
       >
         <Link

@@ -38,7 +38,7 @@ export function NavMenu() {
   }, [mobileMenuOpen])
 
   return (
-    <div className="z-30">
+    <div className="z-30 bg-nav-bg-light dark:bg-nav-bg-dark h-full aspect-square">
       {mobileMenuOpen ? (
         <button
           type="button"
@@ -46,7 +46,12 @@ export function NavMenu() {
           onClick={() => setMobileMenuOpen(false)}
         >
           <span className="sr-only">Close main menu</span>
-          <XMarkIcon className="h-10 w-10" aria-hidden="true" />
+          <div className="aspect-w-1 aspect-h-1 h-full">
+            <XMarkIcon
+              className="h-full w-full object-contain"
+              aria-hidden="true"
+            />
+          </div>
         </button>
       ) : (
         <button
@@ -55,7 +60,12 @@ export function NavMenu() {
           onClick={() => setMobileMenuOpen(true)}
         >
           <span className="sr-only">Open main menu</span>
-          <Bars3Icon className="h-10 w-10" aria-hidden="true" />
+          <div className="aspect-w-1 aspect-h-1 h-full">
+            <Bars3Icon
+              className="h-full w-full object-contain"
+              aria-hidden="true"
+            />
+          </div>
         </button>
       )}
 
@@ -63,46 +73,46 @@ export function NavMenu() {
         ref={bodyDivRef}
         // todo animate slide in transition
         className={cn(
-          'fixed bg-black bg-opacity-50 top-navbar right-0 left-0 bottom-0 w-screen justify-end',
+          'fixed bg-opacity-50 top-navbar right-0 left-0 bottom-0 w-screen justify-end',
           mobileMenuOpen ? 'flex' : 'hidden'
         )}
         onClick={() => setMobileMenuOpen(false)}
       >
         <div
-          className="relative bg-light-bg dark:bg-dark-bg p-6 overflow-y-auto h-full w-1/2 flex flex-col justify-between"
+          className="relative bg-nav-bg-light dark:bg-nav-bg-dark p-6 overflow-y-auto h-full w-full flex flex-col justify-between"
           onClick={(e) => {
             e.stopPropagation()
           }}
         >
-          <div className="mt-6 flow-root">
+          {/* <div className="mt-6 flow-root mx-10d">
             <div className="space-y-2 py-6">
               <a
                 href="#"
-                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-light-text dark:text-dark-text hover:bg-gray-50"
               >
                 Events
               </a>
               <a
                 href="#"
-                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-light-text dark:text-dark-text hover:bg-gray-50"
               >
                 Food
               </a>
               <a
                 href="#"
-                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-light-text dark:text-dark-text hover:bg-gray-50"
               >
                 Nightlife
               </a>
 
               <a
                 href="#"
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-light-text dark:text-dark-text hover:bg-gray-50"
               >
                 Beaches
               </a>
             </div>
-          </div>
+          </div> */}
 
           <DarkModeToggle />
         </div>

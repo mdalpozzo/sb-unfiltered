@@ -16,7 +16,7 @@ export default async function Article({ params }: ArticleProps) {
   const heroImage = article?.images?.[0]
 
   return (
-    <article className="w-full px-20">
+    <article className="w-full">
       <div className="w-full flex md:hidden flex-col items-center mb-14">
         <p className="text-3xl sm:text-5xl font-extrabold mb-6">
           {article?.title}
@@ -26,7 +26,7 @@ export default async function Article({ params }: ArticleProps) {
 
       <DividerHorizontal className="mb-5" />
 
-      <div className="flex flex-col md:flex-row justify-center items-center p-8 gap-8">
+      <div className="flex flex-col md:flex-row justify-center items-center py-8 gap-8">
         {!!heroImage && (
           <div className="w-full flex flex-col items-center">
             <div className="w-screen story-hero-image-margin-x sm:w-full aspect-video relative">

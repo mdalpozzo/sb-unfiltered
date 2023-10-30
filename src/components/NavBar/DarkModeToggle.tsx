@@ -86,21 +86,21 @@ export const DarkModeToggle = ({ initialTheme }: DarkModeToggleProps) => {
         className="w-full flex justify-between items-center sm:gap-3"
       >
         <SunIcon
-          className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
+          className={cn(['flex-1 cursor-pointer', 'h-7 sm:h-6'], {
             // 'text-gray-400': theme !== 'light',
           })}
           onClick={onClickIcon}
           data-theme="light"
         />
         <TvIcon
-          className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
+          className={cn(['flex-1 cursor-pointer', 'h-7 sm:h-6'], {
             // 'text-gray-400': theme !== 'system',
           })}
           onClick={onClickIcon}
           data-theme="system"
         />
         <MoonIcon
-          className={cn(['flex-1 cursor-pointer', 'h-6 sm:h-7'], {
+          className={cn(['flex-1 cursor-pointer', 'h-7 sm:h-6'], {
             // 'text-gray-400': theme !== 'dark',
           })}
           onClick={onClickIcon}

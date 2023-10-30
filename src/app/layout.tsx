@@ -49,7 +49,6 @@ export default function RootLayout({
           `${didactGothic.className}`,
           // dark
           'app-bg',
-          'pt-navbanner',
           'h-full',
         ])}
       >

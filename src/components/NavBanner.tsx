@@ -28,10 +28,10 @@ export function NavBanner() {
   return (
     <div
       className={cn([
-        'fixed',
-        'theme-bg w-full top-navbar z-20',
+        'bg-theme-primary',
         'overflow-hidden',
         'flex items-center',
+        'w-full',
       ])}
     >
       <div
@@ -45,10 +45,10 @@ export function NavBanner() {
             <Link
               href={''} // TODO: Add link
               key={category.name}
-              // className="py-2 px-5 theme-bg-complimentary rounded-md"
+              // className="py-2 px-5 bg-theme-primary-complimentary rounded-md"
               className="py-2 px-5"
             >
-              <p className="text-zinc-600 hover:text-emerald-500 font-extrabold text-lg">
+              <p className="text-zinc-600 hover:text-theme-compliment font-extrabold text-lg">
                 {category.name}
               </p>
             </Link>

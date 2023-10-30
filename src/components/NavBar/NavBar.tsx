@@ -8,7 +8,7 @@ import { cn } from '@/utils/cn'
 import { NavMenu } from './NavMenu'
 import { useEffect, useState } from 'react'
 import { NavBanner } from '../NavBanner'
-import { throttle } from 'lodash'
+import { debounce, throttle } from 'lodash'
 
 interface NavBarProps {
   initialTheme?: string
@@ -16,13 +16,17 @@ interface NavBarProps {
 
 export function NavBar({ initialTheme }: NavBarProps) {
   const [navbarHidden, setNavbarHidden] = useState(false)
+  // const [logoOpacity, setLogoOpacity] = useState(1)
+  const [logoHidden, setLogoHidden] = useState(false)
 
+  // TODO figure out scroll positions for mobile
   useEffect(() => {
+    // NAVBAR =================
     let prevScrollPos = window.scrollY
     let prevPath = window.location.pathname
     let navbarHiddenHistory = { [prevPath]: false }
 
-    const handleScroll = throttle(() => {
+    const handleNavbarVisibility = throttle(() => {
       const currentPath = window.location.pathname
       const currentScrollPos = window.scrollY
 
@@ -50,10 +54,26 @@ export function NavBar({ initialTheme }: NavBarProps) {
       prevPath = currentPath
     }, 100)
 
-    window.addEventListener('scroll', handleScroll)
+    const handleLogoVisibility = debounce(() => {
+      const shouldHideLogo = window.scrollY < 100;
+      if (window.location.pathname === '/') {
+        setLogoHidden(prevLogoHidden => {
+          if (prevLogoHidden !== shouldHideLogo) {
+            return shouldHideLogo;
+          }
+          return prevLogoHidden;
+        });
+      } else {
+        setLogoHidden(false);
+      }
+    }, 100);
+
+    window.addEventListener('scroll', handleNavbarVisibility, { passive: true })
+    window.addEventListener('scroll', handleLogoVisibility, { passive: true })
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleNavbarVisibility)
+      window.removeEventListener('scroll', handleLogoVisibility)
     }
   }, [setNavbarHidden])
 
@@ -61,39 +81,46 @@ export function NavBar({ initialTheme }: NavBarProps) {
     <header
       className={cn([
         'h-navbar',
-        'bg-nav-bg-light fixed top-0 left-0 right-0',
+        'fixed bottom-0 left-0 right-0',
         //border
-        'border-solid border-light-line',
-        // dark mode
-        `dark:border-dark-line dark:bg-nav-bg-dark`,
+        'border-solid border-b-[1px] border-light-line dark:border-dark-line',
+        //background
+        'bg-inherit',
         // shadow
-        'shadow dark:shadow-zinc-600',
+        // 'shadow dark:shadow-zinc-600',
+        // stacking
         'z-30',
 
         // auto hide ======= START
         'transition-all ease-in-out duration-500',
         navbarHidden ? 'opacity-0' : 'opacity-100',
-        navbarHidden ? '-translate-y-navbar' : '',
+        navbarHidden ? 'translate-y-navbar' : '',
         // auto hide ======= END
       ])}
     >
+      <div className={cn(['fixed', 'w-full', ' bottom-navbar z-20'])}>
+        <NavBanner />
+      </div>
+
       <nav
         className={cn(
-          'relative h-full w-full flex items-center justify-center p-1 lg:px-8'
+          'relative h-full w-full flex items-center justify-center lg:px-8 '
         )}
         aria-label="Global"
       >
         <Link
           href="/"
           aria-label="Santa Barbara Unfiltered"
-          className="flex justify-center"
+          className="flex justify-center h-full"
         >
-          <div className="relative flex justify-center items-center">
+          <div className="relative flex justify-center items-center h-full">
             <LogoSVG
-              className={cn(`fill-dark-bg dark:fill-light-bg`)}
-              width="100%"
-              // TODO - height value acts strangely...
-              // height="auto"
+              className={cn(
+                `fill-light-text dark:fill-dark-text h-full w-full`,
+                'transition-opacity duration-[400ms] ease-in-out',
+                logoHidden ? 'opacity-0' : 'opacity-100'
+              )}
+              // style={{ opacity: logoOpacity }}
             />
           </div>
         </Link>
@@ -104,14 +131,12 @@ export function NavBar({ initialTheme }: NavBarProps) {
           </div>
         </div>
 
-        <div className="absolute right-1">
-          <div className="mobile">
+        <div className="absolute right-1 h-full ">
+          <div className="mobile h-full relative">
             <NavMenu />
           </div>
         </div>
       </nav>
-
-      <NavBanner />
     </header>
   )
 }

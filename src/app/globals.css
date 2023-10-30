@@ -47,12 +47,4 @@
   .app-bg {
     @apply dark:bg-dark-bg dark:text-dark-text bg-light-bg text-light-text;
   }
-
-  .theme-bg {
-    @apply bg-green-200;
-  }
-
-  .theme-bg-complimentary {
-    @apply bg-green-300;
-  }
 }

@@ -6,10 +6,8 @@ import { DarkModeToggle } from './DarkModeToggle'
 import { LogoSVG } from '@/components/LogoSVG'
 import { cn } from '@/utils/cn'
 import { NavMenu } from './NavMenu'
-import { useAppStore } from '@/state/store'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { NavBanner } from '../NavBanner'
-import { useShallow } from 'zustand/react/shallow'
 import { throttle } from 'lodash'
 
 interface NavBarProps {
@@ -17,55 +15,47 @@ interface NavBarProps {
 }
 
 export function NavBar({ initialTheme }: NavBarProps) {
-  const { navbarVisible, setNavbarVisible } = useAppStore(
-    useShallow((state) => ({
-      navbarVisible: state.navbarVisible,
-      setNavbarVisible: state.setNavbarVisible,
-    }))
-  )
+  const [navbarHidden, setNavbarHidden] = useState(false)
 
   useEffect(() => {
     let prevScrollPos = window.scrollY
-    let lastPath = window.location
+    let prevPath = window.location.pathname
+    let navbarHiddenHistory = { [prevPath]: false }
 
-    // TODO figure out how to prevent triggering this on in app navigation
     const handleScroll = throttle(() => {
+      const currentPath = window.location.pathname
       const currentScrollPos = window.scrollY
-      console.log(
-        'handleScroll- ',
-        'curr: ',
-        currentScrollPos,
-        'prev: ',
-        prevScrollPos
-      )
 
-      const pathChanged = lastPath !== window.location
       const scrollDiff = currentScrollPos - prevScrollPos
-      const scrollStart = currentScrollPos === 0 && prevScrollPos !== 0
-      // const scrollDown = scrollDiff > 0
 
-      if (
-        pathChanged ||
-        (!scrollStart &&
-          // !scrollDown &&
-          Math.abs(scrollDiff) < 200)
-      )
-        return
-
-      if (scrollDiff <= 0) {
-        setNavbarVisible(true)
-      } else {
-        setNavbarVisible(false)
+      if (currentScrollPos === 0) {
+        // if at top of page, show navbar
+        const hidden = false
+        setNavbarHidden(hidden)
+        navbarHiddenHistory[currentPath] = hidden
+      } else if (currentPath !== prevPath) {
+        // if page changed, try to use the last navbar state for new page
+        const hidden = !!navbarHiddenHistory[currentPath]
+        setNavbarHidden(hidden)
+        navbarHiddenHistory[currentPath] = hidden
+      } else if (Math.abs(scrollDiff) > 200) {
+        // only trigger if at least 200 px scrolled
+        const hidden = !(scrollDiff < 0)
+        setNavbarHidden(hidden)
+        navbarHiddenHistory[currentPath] = hidden
       }
 
+      // update prev values
       prevScrollPos = currentScrollPos
-      lastPath = window.location
+      prevPath = currentPath
     }, 100)
 
     window.addEventListener('scroll', handleScroll)
 
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [setNavbarVisible])
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [setNavbarHidden])
 
   return (
     <header
@@ -82,8 +72,8 @@ export function NavBar({ initialTheme }: NavBarProps) {
 
         // auto hide ======= START
         'transition-all ease-in-out duration-500',
-        navbarVisible ? 'opacity-100' : 'opacity-0',
-        navbarVisible ? '' : '-translate-y-navbar',
+        navbarHidden ? 'opacity-0' : 'opacity-100',
+        navbarHidden ? '-translate-y-navbar' : '',
         // auto hide ======= END
       ])}
     >

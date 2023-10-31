@@ -18,7 +18,7 @@ export default async function Home() {
           className={cn(`fill-light-text dark:fill-dark-text h-full w-full`)}
         />
       </div>
-      <DividerHorizontal className="mb-8 mt-4 w-32" />
+      <DividerHorizontal className="mb-8 mt-4 w-48" />
 
       <div className="hidden sm:flex">
         <HomePageDesktop

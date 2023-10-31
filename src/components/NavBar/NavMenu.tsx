@@ -5,10 +5,18 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { cn } from '@/utils/cn'
 import { DarkModeToggle } from './DarkModeToggle'
 
-export function NavMenu() {
+interface NavMenuProps {
+  onToggle: (open: boolean) => void
+}
+
+export function NavMenu({ onToggle }: NavMenuProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const bodyDivRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    onToggle(mobileMenuOpen)
+  }, [mobileMenuOpen, onToggle])
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
@@ -38,48 +46,18 @@ export function NavMenu() {
   }, [mobileMenuOpen])
 
   return (
-    <div className="z-30 bg-nav-bg-light dark:bg-nav-bg-dark h-full aspect-square">
-      {mobileMenuOpen ? (
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-light-text dark:text-dark-text"
-          onClick={() => setMobileMenuOpen(false)}
-        >
-          <span className="sr-only">Close main menu</span>
-          <div className="aspect-w-1 aspect-h-1 h-full">
-            <XMarkIcon
-              className="h-full w-full object-contain"
-              aria-hidden="true"
-            />
-          </div>
-        </button>
-      ) : (
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-light-text dark:text-dark-text"
-          onClick={() => setMobileMenuOpen(true)}
-        >
-          <span className="sr-only">Open main menu</span>
-          <div className="aspect-w-1 aspect-h-1 h-full">
-            <Bars3Icon
-              className="h-full w-full object-contain"
-              aria-hidden="true"
-            />
-          </div>
-        </button>
-      )}
-
+    <div className="z-30 h-full aspect-square">
       <div
         ref={bodyDivRef}
         // todo animate slide in transition
         className={cn(
-          'fixed bg-opacity-50 top-navbar right-0 left-0 bottom-0 w-screen justify-end',
+          'fixed bg-opacity-50 bottom-navbar right-0 left-0 top-0 w-screen justify-end',
           mobileMenuOpen ? 'flex' : 'hidden'
         )}
         onClick={() => setMobileMenuOpen(false)}
       >
         <div
-          className="relative bg-nav-bg-light dark:bg-nav-bg-dark p-6 overflow-y-auto h-full w-full flex flex-col justify-between"
+          className="relative bg-navmenu-bg-light dark:bg-navmenu-bg-dark p-6 overflow-y-auto h-full w-full flex flex-col justify-end"
           onClick={(e) => {
             e.stopPropagation()
           }}
@@ -117,6 +95,36 @@ export function NavMenu() {
           <DarkModeToggle />
         </div>
       </div>
+
+      {mobileMenuOpen ? (
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-md p-2 text-light-text dark:text-dark-text"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <span className="sr-only">Close main menu</span>
+          <div className="aspect-w-1 aspect-h-1 h-full">
+            <XMarkIcon
+              className="h-full w-full object-contain"
+              aria-hidden="true"
+            />
+          </div>
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-md p-2 text-light-text dark:text-dark-text"
+          onClick={() => setMobileMenuOpen(true)}
+        >
+          <span className="sr-only">Open main menu</span>
+          <div className="aspect-w-1 aspect-h-1 h-full">
+            <Bars3Icon
+              className="h-full w-full object-contain"
+              aria-hidden="true"
+            />
+          </div>
+        </button>
+      )}
     </div>
   )
 }

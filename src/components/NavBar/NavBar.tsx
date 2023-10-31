@@ -18,6 +18,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
   const [navbarHidden, setNavbarHidden] = useState(false)
   // const [logoOpacity, setLogoOpacity] = useState(1)
   const [logoHidden, setLogoHidden] = useState(false)
+  const [navMenuOpen, setNavMenuOpen] = useState(false)
 
   // TODO figure out scroll positions for mobile
   useEffect(() => {
@@ -32,7 +33,12 @@ export function NavBar({ initialTheme }: NavBarProps) {
 
       const scrollDiff = currentScrollPos - prevScrollPos
 
-      if (currentScrollPos === 0) {
+      if (navMenuOpen) {
+        // if nav menu is open, show navbar
+        const hidden = false
+        setNavbarHidden(hidden)
+        navbarHiddenHistory[currentPath] = hidden
+      } else if (currentScrollPos === 0) {
         // if at top of page, show navbar
         const hidden = false
         setNavbarHidden(hidden)
@@ -54,19 +60,19 @@ export function NavBar({ initialTheme }: NavBarProps) {
       prevPath = currentPath
     }, 100)
 
-    const handleLogoVisibility = debounce(() => {
-      const shouldHideLogo = window.scrollY < 100;
+    const handleLogoVisibility = throttle(() => {
+      const shouldHideLogo = window.scrollY < 100
       if (window.location.pathname === '/') {
-        setLogoHidden(prevLogoHidden => {
+        setLogoHidden((prevLogoHidden) => {
           if (prevLogoHidden !== shouldHideLogo) {
-            return shouldHideLogo;
+            return shouldHideLogo
           }
-          return prevLogoHidden;
-        });
+          return prevLogoHidden
+        })
       } else {
-        setLogoHidden(false);
+        setLogoHidden(false)
       }
-    }, 100);
+    }, 100)
 
     window.addEventListener('scroll', handleNavbarVisibility, { passive: true })
     window.addEventListener('scroll', handleLogoVisibility, { passive: true })
@@ -81,9 +87,10 @@ export function NavBar({ initialTheme }: NavBarProps) {
     <header
       className={cn([
         'h-navbar',
+        'pt-1',
         'fixed bottom-0 left-0 right-0',
         //border
-        'border-solid border-b-[1px] border-light-line dark:border-dark-line',
+        // 'border-solid border-b-[1px] border-light-line dark:border-dark-line',
         //background
         'bg-inherit',
         // shadow
@@ -98,7 +105,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
         // auto hide ======= END
       ])}
     >
-      <div className={cn(['fixed', 'w-full', ' bottom-navbar z-20'])}>
+      <div className={cn(['absolute', 'w-full', ' bottom-navbar z-20'])}>
         <NavBanner />
       </div>
 
@@ -131,9 +138,9 @@ export function NavBar({ initialTheme }: NavBarProps) {
           </div>
         </div>
 
-        <div className="absolute right-1 h-full ">
+        <div className="absolute right-1 h-full">
           <div className="mobile h-full relative">
-            <NavMenu />
+            <NavMenu onToggle={(open) => setNavMenuOpen(open)} />
           </div>
         </div>
       </nav>

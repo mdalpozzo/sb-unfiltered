@@ -8,7 +8,7 @@ import { cn } from '@/utils/cn'
 import { NavMenu } from './NavMenu'
 import { useEffect, useState } from 'react'
 import { NavBanner } from '../NavBanner'
-import { debounce, throttle } from 'lodash'
+import { throttle } from 'lodash'
 
 interface NavBarProps {
   initialTheme?: string
@@ -81,7 +81,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
       window.removeEventListener('scroll', handleNavbarVisibility)
       window.removeEventListener('scroll', handleLogoVisibility)
     }
-  }, [setNavbarHidden])
+  }, [navMenuOpen, setNavbarHidden])
 
   return (
     <header

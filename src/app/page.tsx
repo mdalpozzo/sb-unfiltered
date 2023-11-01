@@ -23,7 +23,7 @@ export default async function RootPage({}) {
           className={cn(`fill-light-text dark:fill-dark-text h-full w-full`)}
         />
       </div>
-      <p className='text-xl sm:text-2xl'>Your guide to the good stuff</p>
+      <p className="text-xl sm:text-2xl">The best of Santa Barbara</p>
       <DividerHorizontal className="mb-8 mt-4 w-48" />
 
       <div className="hidden sm:flex">

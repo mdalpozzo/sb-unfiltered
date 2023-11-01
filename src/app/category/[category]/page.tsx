@@ -3,7 +3,7 @@ export default function CategoryPage() {
 
   return (
     <div className="padding-page-top">
-      <h1>Category Page</h1>
+      <h1>Comings soon...</h1>
     </div>
   )
 }

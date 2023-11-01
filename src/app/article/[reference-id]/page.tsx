@@ -2,13 +2,13 @@ import { CustomImage } from '@/components/CustomImage'
 import { DividerHorizontal } from '@/components/DividerHorizontal'
 import { fetchArticleData } from '@/contentQueries/fetchArticleData'
 
-interface ArticleProps {
+interface ArticlePageProps {
   params: {
     'reference-id': string
   }
 }
 
-export default async function Article({ params }: ArticleProps) {
+export default async function ArticlePage({ params }: ArticlePageProps) {
   const article = await fetchArticleData({
     articleReferenceId: params['reference-id'],
   })
@@ -16,8 +16,10 @@ export default async function Article({ params }: ArticleProps) {
   const heroImage = article?.images?.[0]
 
   return (
-    <article className="w-full">
-      <div className="w-full flex md:hidden flex-col items-center mb-14">
+    <article className="w-full padding-page-top px-10">
+      <DividerHorizontal className="md:hidden mb-5" />
+
+      <div className="w-full flex md:hidden flex-col items-center mb-10">
         <p className="text-3xl sm:text-5xl font-extrabold mb-6">
           {article?.title}
         </p>

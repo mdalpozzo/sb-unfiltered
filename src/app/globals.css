@@ -47,4 +47,8 @@
   .app-bg {
     @apply dark:bg-dark-bg dark:text-dark-text bg-light-bg text-light-text;
   }
+
+  .padding-page-top {
+    @apply pt-0 sm:pt-navbanner;
+  }
 }

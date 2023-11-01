@@ -5,15 +5,20 @@ import { LogoSVG } from '@/components/LogoSVG'
 import { fetchFrontPageStories } from '@/contentQueries/fetchFrontPageStories'
 import { cn } from '@/utils/cn'
 
-export default async function Home() {
+export default async function RootPage({}) {
   const response = await fetchFrontPageStories()
   const { mainStory, sideStories, allStories } = response
 
   return (
     <main
-      className={cn('w-full min-h-screen', 'base-padding-x pt-2', 'flex flex-col justify-center items-center')}
+      className={cn(
+        'w-full min-h-screen',
+        'base-padding-x',
+        'padding-page-top',
+        'flex flex-col justify-center items-center'
+      )}
     >
-      <div className="relative flex justify-center items-center h-16">
+      <div className="relative flex justify-center items-center h-16 mt-4 md:mt-0">
         <LogoSVG
           className={cn(`fill-light-text dark:fill-dark-text h-full w-full`)}
         />

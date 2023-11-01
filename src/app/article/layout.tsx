@@ -16,7 +16,7 @@ const didactGothic = Didact_Gothic({
 //   description: 'Santa Barbara living guide',
 // }
 
-export default function RootLayout({
+export default function ArticleLayout({
   children,
 }: {
   children: React.ReactNode
@@ -28,7 +28,7 @@ export default function RootLayout({
         // dark,
       ])}
     >
-      <div className="mt-20 pb-20">
+      <div className="mt-14 pb-20">
         {/* // could be an ad slot component here */}
         {/* <NavBar initialTheme={theme} /> */}
         {children}

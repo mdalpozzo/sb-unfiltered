@@ -10,15 +10,41 @@ import { useEffect, useState } from 'react'
 import { NavBanner } from '../NavBanner'
 import { throttle } from 'lodash'
 
+const MOBILE_BREAKPOINT = 640
+
 interface NavBarProps {
   initialTheme?: string
 }
 
 export function NavBar({ initialTheme }: NavBarProps) {
+  const [isMobile, setIsMobile] = useState(
+    window ? window.innerWidth < MOBILE_BREAKPOINT : false
+  )
   const [navbarHidden, setNavbarHidden] = useState(false)
   // const [logoOpacity, setLogoOpacity] = useState(1)
   const [logoHidden, setLogoHidden] = useState(false)
   const [navMenuOpen, setNavMenuOpen] = useState(false)
+
+  // create an event listener
+  useEffect(() => {
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+
+    //choose the screen size
+    const handleResize = () => {
+      // breakpoint from tailwind config "sm"
+      if (window.innerWidth < MOBILE_BREAKPOINT) {
+        setIsMobile(true)
+      } else {
+        setIsMobile(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   // TODO figure out scroll positions for mobile
   useEffect(() => {
@@ -88,7 +114,8 @@ export function NavBar({ initialTheme }: NavBarProps) {
       className={cn([
         'h-navbar',
         'pt-1',
-        'fixed bottom-0 left-0 right-0',
+        'fixed left-0 right-0',
+        isMobile ? 'bottom-0' : 'top-0',
         //border
         // 'border-solid border-b-[1px] border-light-line dark:border-dark-line',
         //background
@@ -101,13 +128,22 @@ export function NavBar({ initialTheme }: NavBarProps) {
         // auto hide ======= START
         'transition-all ease-in-out duration-500',
         navbarHidden ? 'opacity-0' : 'opacity-100',
-        navbarHidden ? 'translate-y-navbar' : '',
+        navbarHidden
+          ? `${isMobile ? 'translate-y-navbar' : '-translate-y-navbar'}`
+          : '',
         // auto hide ======= END
       ])}
     >
-      <div className={cn(['absolute', 'w-full', ' bottom-navbar z-20'])}>
-        <NavBanner />
-      </div>
+      {isMobile && (
+        <div className={cn(['absolute', 'w-full', ' bottom-navbar z-20'])}>
+          <NavBanner />
+        </div>
+      )}
+      {!isMobile && (
+        <div className={cn(['absolute', 'w-full', ' top-navbar z-20'])}>
+          <NavBanner />
+        </div>
+      )}
 
       <nav
         className={cn(
@@ -140,7 +176,10 @@ export function NavBar({ initialTheme }: NavBarProps) {
 
         <div className="absolute right-1 h-full">
           <div className="mobile h-full relative">
-            <NavMenu onToggle={(open) => setNavMenuOpen(open)} />
+            <NavMenu
+              isMobile={isMobile}
+              onToggle={(open) => setNavMenuOpen(open)}
+            />
           </div>
         </div>
       </nav>

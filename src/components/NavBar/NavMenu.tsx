@@ -7,9 +7,10 @@ import { DarkModeToggle } from './DarkModeToggle'
 
 interface NavMenuProps {
   onToggle: (open: boolean) => void
+  isMobile: boolean
 }
 
-export function NavMenu({ onToggle }: NavMenuProps) {
+export function NavMenu({ onToggle, isMobile }: NavMenuProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const bodyDivRef = useRef<HTMLDivElement>(null)
@@ -51,7 +52,8 @@ export function NavMenu({ onToggle }: NavMenuProps) {
         ref={bodyDivRef}
         // todo animate slide in transition
         className={cn(
-          'fixed bg-opacity-50 bottom-navbar right-0 left-0 top-0 w-screen justify-end',
+          'fixed bg-opacity-50 right-0 left-0 top-0 w-screen justify-end',
+          isMobile ? 'bottom-navbar' : 'top-navbar',
           mobileMenuOpen ? 'flex' : 'hidden'
         )}
         onClick={() => setMobileMenuOpen(false)}

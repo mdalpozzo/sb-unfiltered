@@ -4,23 +4,23 @@ import Link from 'next/link'
 const MOCK_CATEGORIES = [
   {
     name: 'Restaurants',
-    path: '/restaurants',
+    path: '/category/restaurants',
   },
   {
     name: 'Beaches',
-    path: '/restaurants',
+    path: '/category/beaches',
   },
   {
     name: 'Wine',
-    path: '/restaurants',
+    path: '/category/wine',
   },
   {
     name: 'Activities',
-    path: '/restaurants',
+    path: '/category/activities',
   },
   {
     name: 'Nightlife',
-    path: '/restaurants',
+    path: '/category/nightlife',
   },
 ]
 
@@ -43,7 +43,7 @@ export function NavBanner() {
         {MOCK_CATEGORIES.map((category) => {
           return (
             <Link
-              href={''} // TODO: Add link
+              href={category.path}
               key={category.name}
               // className="py-2 px-5 bg-theme-primary-complimentary rounded-md"
               className="py-2 px-5"

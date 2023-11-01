@@ -9,6 +9,7 @@ import { NavMenu } from './NavMenu'
 import { useEffect, useState } from 'react'
 import { NavBanner } from '../NavBanner'
 import { throttle } from 'lodash'
+import { usePathname } from 'next/navigation'
 
 const MOBILE_BREAKPOINT = 640
 
@@ -22,8 +23,10 @@ export function NavBar({ initialTheme }: NavBarProps) {
   )
   const [navbarHidden, setNavbarHidden] = useState(false)
   // const [logoOpacity, setLogoOpacity] = useState(1)
-  const [logoHidden, setLogoHidden] = useState(false)
+  const [logoHidden, setLogoHidden] = useState(true)
   const [navMenuOpen, setNavMenuOpen] = useState(false)
+
+  const path = usePathname()
 
   // create an event listener
   useEffect(() => {
@@ -109,6 +112,11 @@ export function NavBar({ initialTheme }: NavBarProps) {
     }
   }, [navMenuOpen, setNavbarHidden])
 
+  useEffect(() => {
+    // logo is only hidden on home page
+    setLogoHidden(path === '/' && window.scrollY < 100)
+  }, [path])
+
   return (
     <header
       className={cn([
@@ -119,7 +127,8 @@ export function NavBar({ initialTheme }: NavBarProps) {
         //border
         // 'border-solid border-b-[1px] border-light-line dark:border-dark-line',
         //background
-        'bg-inherit',
+        // 'bg-inherit',
+        'bg-nav-bg-light dark:bg-nav-bg-dark',
         // shadow
         // 'shadow dark:shadow-zinc-600',
         // stacking

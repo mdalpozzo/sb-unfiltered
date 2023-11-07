@@ -14,14 +14,14 @@ const MOCK_CATEGORIES = [
     name: 'Wine',
     path: '/category/wine',
   },
-  {
-    name: 'Activities',
-    path: '/category/activities',
-  },
-  {
-    name: 'Nightlife',
-    path: '/category/nightlife',
-  },
+  // {
+  //   name: 'Activities',
+  //   path: '/category/activities',
+  // },
+  // {
+  //   name: 'Nightlife',
+  //   path: '/category/nightlife',
+  // },
 ]
 
 export function NavBanner() {

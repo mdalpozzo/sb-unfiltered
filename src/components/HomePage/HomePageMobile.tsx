@@ -41,6 +41,7 @@ export const HomePageMobile = ({
             <ArticleTeaserCardSmall
               referenceId={story.referenceId}
               title={story.title}
+              description={story.description}
               imageUrl={story.imageUrl}
               imageDescription={story.imageDescription}
               hero
@@ -58,6 +59,7 @@ export const HomePageMobile = ({
             <ArticleTeaserCardSmall
               referenceId={story.referenceId}
               title={story.title}
+              description={story.description}
               imageUrl={story.imageUrl}
               imageDescription={story.imageDescription}
               imageSizes="100%"

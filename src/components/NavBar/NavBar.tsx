@@ -13,6 +13,9 @@ import { usePathname } from 'next/navigation'
 
 const MOBILE_BREAKPOINT = 640
 
+const SCROLL_THRESHOLD_DESKTOP = 100
+const SCROLL_THRESHOLD_MOBILE = 100
+
 interface NavBarProps {
   initialTheme?: string
 }
@@ -77,7 +80,10 @@ export function NavBar({ initialTheme }: NavBarProps) {
         const hidden = !!navbarHiddenHistory[currentPath]
         setNavbarHidden(hidden)
         navbarHiddenHistory[currentPath] = hidden
-      } else if (Math.abs(scrollDiff) > 200) {
+      } else if (
+        Math.abs(scrollDiff) >
+        (isMobile ? SCROLL_THRESHOLD_MOBILE : SCROLL_THRESHOLD_DESKTOP)
+      ) {
         // only trigger if at least 200 px scrolled
         const hidden = !(scrollDiff < 0)
         setNavbarHidden(hidden)

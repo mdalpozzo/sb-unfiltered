@@ -4,6 +4,10 @@
   /* color: green; */
 }
 
+.article-body h1 {
+  @apply text-6xl mb-4 mt-6 w-full text-center;
+}
+
 .article-body h3 {
   @apply text-4xl mb-4 mt-6 w-full text-center;
 }

@@ -52,6 +52,7 @@ export const HomePageDesktop = ({
                 <ArticleTeaserCardSmall
                   referenceId={sideStories?.[0]?.referenceId || 'error'}
                   title={sideStories?.[0]?.title || 'error'}
+                  description={sideStories?.[0]?.description || 'error'}
                   imageUrl={sideStories?.[0]?.imageUrl || 'error'}
                   imageDescription={
                     sideStories?.[0]?.imageDescription || 'error'
@@ -65,6 +66,7 @@ export const HomePageDesktop = ({
                 <ArticleTeaserCardSmall
                   referenceId={sideStories?.[1]?.referenceId || 'error'}
                   title={sideStories?.[1]?.title || 'error'}
+                  description={sideStories?.[1]?.description || 'error'}
                   imageUrl={sideStories?.[1]?.imageUrl || 'error'}
                   imageDescription={
                     sideStories?.[1]?.imageDescription || 'error'

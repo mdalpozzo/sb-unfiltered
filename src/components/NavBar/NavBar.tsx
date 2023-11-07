@@ -116,7 +116,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
       window.removeEventListener('scroll', handleNavbarVisibility)
       window.removeEventListener('scroll', handleLogoVisibility)
     }
-  }, [navMenuOpen, setNavbarHidden])
+  }, [isMobile, navMenuOpen, setNavbarHidden])
 
   useEffect(() => {
     // logo is only hidden on home page

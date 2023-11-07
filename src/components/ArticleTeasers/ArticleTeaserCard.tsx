@@ -40,7 +40,7 @@ export const ArticleTeaserCard = ({
         </div>
 
         <div className="flex flex-col space-y-2 sm:space-y-4">
-          <p className="text-sm desktop">{imageDescription}</p>
+          {/* <p className="text-sm desktop">{imageDescription}</p> */}
           <p className="text-3xl font-bold sm:text-4xl hover:underline">
             {title}
           </p>

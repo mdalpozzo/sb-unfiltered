@@ -6,12 +6,14 @@ export interface ArticleTeaserCardPropsSmall {
   imageUrl: string
   imageDescription: string
   title: string
+  description: string
   hero?: boolean
   imageSizes?: string
 }
 
 export const ArticleTeaserCardSmall = ({
   title,
+  description,
   imageUrl,
   imageDescription,
   referenceId,
@@ -36,8 +38,9 @@ export const ArticleTeaserCardSmall = ({
       </div>
 
       <div className="flex flex-col space-y-2">
-        <p className="text-sm desktop">{imageDescription}</p>
+        {/* <p className="text-sm desktop">{imageDescription}</p> */}
         <p className="text-2xl hover:underline">{title}</p>
+        <p className="text-sm desktop">{description}</p>
       </div>
     </ArticleClickableWrapper>
   )

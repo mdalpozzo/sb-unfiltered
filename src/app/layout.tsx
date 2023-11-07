@@ -1,20 +1,13 @@
 import { NavBar } from '@/components/NavBar'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Didact_Gothic } from 'next/font/google'
 import { Providers } from '@/components/Providers'
 import { DEFAULT_THEME } from '@/constants'
 import { getThemeCookie } from '@/theme/getThemeCookie'
 import { cn } from '@/utils/cn'
 import { Footer } from '@/components/Footer/Footer'
 import { GTMNoScript, GTMScript } from '@/components/GTMScripts'
-
-const didactGothic = Didact_Gothic({
-  weight: ['400'],
-  style: ['normal'],
-  subsets: ['latin'],
-  display: 'swap',
-})
+import { didactGothic } from '@/styles/fonts'
 
 // TODO research the SEO here
 export const metadata: Metadata = {

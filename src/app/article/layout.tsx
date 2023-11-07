@@ -1,20 +1,5 @@
-// import './globals.css'
-// import type { Metadata } from 'next'
 import './article.css'
-import { Didact_Gothic } from 'next/font/google'
 import { cn } from '@/utils/cn'
-
-const didactGothic = Didact_Gothic({
-  weight: ['400'],
-  style: ['normal'],
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-// export const metadata: Metadata = {
-//   title: 'SB Unfiltered',
-//   description: 'Santa Barbara living guide',
-// }
 
 export default function ArticleLayout({
   children,

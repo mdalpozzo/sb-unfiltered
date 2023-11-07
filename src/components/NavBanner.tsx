@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 const MOCK_CATEGORIES = [
   {
-    name: 'Restaurants',
-    path: '/category/restaurants',
+    name: 'Food',
+    path: '/category/food',
   },
   {
     name: 'Beaches',

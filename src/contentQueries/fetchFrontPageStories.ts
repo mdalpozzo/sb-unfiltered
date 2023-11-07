@@ -2,6 +2,8 @@ import { ArticleTeaserCardProps } from '@/components/ArticleTeasers/ArticleTease
 import { ArticleTeaserCardPropsSmall } from '@/components/ArticleTeasers/ArticleTeaserCardSmall'
 import { ArticleTeaserCardXSmallProps } from '@/components/ArticleTeasers/ArticleTeaserCardXSmall'
 import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '@/constants'
+import { ArticleSchema } from '@/schemas/ArticleSchema'
+import { AppLogger } from '@/services/Logger/Logger'
 import { z } from 'zod'
 
 interface FrontPageStories {
@@ -50,28 +52,10 @@ export const queryFrontPageStories = `
   }
 }`
 
-const HeroImagesCollectionSchema = z.object({
-  items: z.array(
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      url: z.string(),
-    })
-  ),
-})
-
-const StorySchema = z.object({
-  referenceId: z.string(),
-  title: z.string(),
-  subtitle: z.string(),
-  body: z.string(),
-  heroImagesCollection: HeroImagesCollectionSchema,
-})
-
 const SlotSchema = z.object({
   slotName: z.string(),
   storiesCollection: z.object({
-    items: z.array(StorySchema),
+    items: z.array(ArticleSchema),
   }),
 })
 
@@ -80,7 +64,7 @@ const ResponseDataSchema = z.object({
     items: z.array(SlotSchema),
   }),
   allArticles: z.object({
-    items: z.array(StorySchema),
+    items: z.array(ArticleSchema),
   }),
 })
 
@@ -100,7 +84,7 @@ export const fetchFrontPageStories = async (): Promise<FrontPageStories> => {
   const { data, errors } = await res.json()
 
   if (errors) {
-    console.log('errors: ', errors)
+    AppLogger.error('errors: ', errors)
     throw Error('Error: fetching fetchFrontPageStories')
   }
 
@@ -109,8 +93,7 @@ export const fetchFrontPageStories = async (): Promise<FrontPageStories> => {
   if (!zodResponse.success) {
     const errorMessage =
       'Error: fetching fetchFrontPageStories - data is malformed'
-    console.log(errorMessage)
-    console.log(zodResponse.error) // this will give you the zod parsing error
+    AppLogger.error(errorMessage, { data: zodResponse.error })
     throw Error(errorMessage)
   }
 

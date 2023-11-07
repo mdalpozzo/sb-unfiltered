@@ -1,6 +1,8 @@
 import { CustomImage } from '@/components/CustomImage'
 import { DividerHorizontal } from '@/components/DividerHorizontal'
 import { fetchArticleData } from '@/contentQueries/fetchArticleData'
+import { bebas_neue, montserrat } from '@/styles/fonts'
+import { cn } from '@/utils/cn'
 
 interface ArticlePageProps {
   params: {
@@ -20,7 +22,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <DividerHorizontal className="md:hidden mb-5" />
 
       <div className="w-full flex md:hidden flex-col items-center mb-10">
-        <p className="text-3xl sm:text-5xl font-extrabold mb-6">
+        <p
+          className={cn(
+            'text-3xl sm:text-5xl font-extrabold mb-6',
+            // montserrat.className
+            // bebas_neue.className
+          )}
+        >
           {article?.title}
         </p>
         <p className="text-2xl sm:font-bold">{article?.subtitle}</p>

@@ -3,5 +3,5 @@ export default function CategoryLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <div>{children}</div>
+  return <div className="pt-10 px-10 mb-20">{children}</div>
 }

@@ -1,4 +1,5 @@
 import { CONTENTFUL_API_ACCESS_TOKEN, CONTENTFUL_SPACE_ID } from '@/constants'
+import { AppLogger } from '@/services/Logger/Logger'
 import { remark } from 'remark'
 import html from 'remark-html'
 
@@ -63,13 +64,13 @@ export const fetchArticleData = async ({
   // TODO handle errors and validation
 
   if (errors) {
-    console.log('errors: ', errors)
+    AppLogger.error('errors: ', errors)
   }
 
   const foundArticle = data.articleCollection?.items?.[0]
 
   if (!foundArticle) {
-    console.log('error - no article found: ', foundArticle)
+    AppLogger.error('error - no article found: ', foundArticle)
   }
 
   // Use remark to convert markdown into HTML string

@@ -80,11 +80,13 @@ export function NavBar({ initialTheme }: NavBarProps) {
         const hidden = !!navbarHiddenHistory[currentPath]
         setNavbarHidden(hidden)
         navbarHiddenHistory[currentPath] = hidden
-      } else if (
-        Math.abs(scrollDiff) >
-        (isMobile ? SCROLL_THRESHOLD_MOBILE : SCROLL_THRESHOLD_DESKTOP)
-      ) {
-        // only trigger if at least 200 px scrolled
+      } else if (scrollDiff < 0) {
+        // scrolled up
+        const hidden = false
+        setNavbarHidden(hidden)
+        navbarHiddenHistory[currentPath] = hidden
+      } else {
+        // scrolled down
         const hidden = !(scrollDiff < 0)
         setNavbarHidden(hidden)
         navbarHiddenHistory[currentPath] = hidden

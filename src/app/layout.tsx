@@ -43,6 +43,7 @@ export default function RootLayout({
           // dark
           'app-bg',
           'h-full',
+          'pb-28 md:pb-6'
         ])}
       >
         <GTMNoScript />

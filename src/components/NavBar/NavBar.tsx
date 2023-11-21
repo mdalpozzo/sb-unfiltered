@@ -6,15 +6,15 @@ import { DarkModeToggle } from './DarkModeToggle'
 import { LogoSVG } from '@/components/LogoSVG'
 import { cn } from '@/utils/cn'
 import { NavMenu } from './NavMenu'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { NavBanner } from '../NavBanner'
 import { throttle } from 'lodash'
 import { usePathname } from 'next/navigation'
 
 const MOBILE_BREAKPOINT = 640
 
-const SCROLL_THRESHOLD_DESKTOP = 100
-const SCROLL_THRESHOLD_MOBILE = 100
+const SCROLL_THRESHOLD_DESKTOP = 0
+const SCROLL_THRESHOLD_MOBILE = -5
 
 interface NavBarProps {
   initialTheme?: string
@@ -28,6 +28,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
   // const [logoOpacity, setLogoOpacity] = useState(1)
   const [logoHidden, setLogoHidden] = useState(true)
   const [navMenuOpen, setNavMenuOpen] = useState(false)
+  const scrollThreshold = useMemo(() => isMobile ? SCROLL_THRESHOLD_MOBILE : SCROLL_THRESHOLD_DESKTOP, [isMobile])
 
   const path = usePathname()
 
@@ -80,14 +81,14 @@ export function NavBar({ initialTheme }: NavBarProps) {
         const hidden = !!navbarHiddenHistory[currentPath]
         setNavbarHidden(hidden)
         navbarHiddenHistory[currentPath] = hidden
-      } else if (scrollDiff < 0) {
-        // scrolled up
-        const hidden = false
+      } else if (scrollDiff > 0) {
+        // scrolled down
+        const hidden = true
         setNavbarHidden(hidden)
         navbarHiddenHistory[currentPath] = hidden
-      } else {
-        // scrolled down
-        const hidden = !(scrollDiff < 0)
+      } else if (scrollDiff < scrollThreshold) {
+        // scrolled up past the threshold
+        let hidden = false
         setNavbarHidden(hidden)
         navbarHiddenHistory[currentPath] = hidden
       }
@@ -118,7 +119,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
       window.removeEventListener('scroll', handleNavbarVisibility)
       window.removeEventListener('scroll', handleLogoVisibility)
     }
-  }, [isMobile, navMenuOpen, setNavbarHidden])
+  }, [isMobile, navMenuOpen, scrollThreshold, setNavbarHidden])
 
   useEffect(() => {
     // logo is only hidden on home page
@@ -180,7 +181,7 @@ export function NavBar({ initialTheme }: NavBarProps) {
                 'transition-opacity duration-[400ms] ease-in-out',
                 logoHidden ? 'opacity-0' : 'opacity-100'
               )}
-              // style={{ opacity: logoOpacity }}
+            // style={{ opacity: logoOpacity }}
             />
           </div>
         </Link>

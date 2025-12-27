@@ -6,27 +6,29 @@ import { fetchFrontPageStories } from '@/contentQueries/fetchFrontPageStories'
 import { cn } from '@/utils/cn'
 
 export default async function RootPage({}) {
-  const response = await fetchFrontPageStories()
-  const { mainStory, sideStories, allStories } = response
+    const response = await fetchFrontPageStories()
+    const { mainStory, sideStories, allStories } = response
 
-  return (
-    <main
-      className={cn(
-        'w-full min-h-screen',
-        'base-padding-x',
-        'padding-page-top',
-        'flex flex-col justify-center items-center'
-      )}
-    >
-      <div className="relative flex justify-center items-center h-16 mt-4 md:mt-0">
-        <LogoSVG
-          className={cn(`fill-light-text dark:fill-dark-text h-full w-full`)}
-        />
-      </div>
-      <p className="text-xl sm:text-2xl">The best of Santa Barbara</p>
-      <DividerHorizontal className="mb-8 mt-4 w-48" />
+    return (
+        <main
+            className={cn(
+                'w-full min-h-screen',
+                'base-padding-x',
+                'padding-page-top',
+                'flex flex-col justify-center items-center'
+            )}
+        >
+            <div className="relative flex justify-center items-center h-16 mt-4 md:mt-0">
+                <LogoSVG
+                    className={cn(
+                        `fill-light-text dark:fill-dark-text h-full w-full`
+                    )}
+                />
+            </div>
+            <p className="text-xl sm:text-2xl">The best of Santa Barbara</p>
+            <DividerHorizontal className="mb-8 mt-4 w-48" />
 
-      <div className="hidden sm:flex">
+            {/* <div className="hidden sm:flex">
         <HomePageDesktop
           mainStory={mainStory}
           sideStories={sideStories}
@@ -40,7 +42,7 @@ export default async function RootPage({}) {
           sideStories={sideStories}
           allStories={allStories}
         />
-      </div>
-    </main>
-  )
+      </div> */}
+        </main>
+    )
 }

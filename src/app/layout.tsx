@@ -8,53 +8,56 @@ import { cn } from '@/utils/cn'
 import { Footer } from '@/components/Footer/Footer'
 import { GTMNoScript, GTMScript } from '@/components/GTMScripts'
 import { didactGothic } from '@/styles/fonts'
+import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary'
 
 // TODO research the SEO here
 export const metadata: Metadata = {
-  title: 'Santa Barbara Unfiltered',
-  description:
-    'Santa Barbara guide and news for the best food, drinks, and lifestyle.',
-  icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
-  },
-  openGraph: {
     title: 'Santa Barbara Unfiltered',
     description:
-      'Santa Barbara guide and news for the best food, drinks, and lifestyle.',
-    siteName: 'Santa Barbara Unfiltered',
-  },
+        'Santa Barbara guide and news for the best food, drinks, and lifestyle.',
+    icons: {
+        icon: '/favicon.png',
+        shortcut: '/favicon.png',
+    },
+    openGraph: {
+        title: 'Santa Barbara Unfiltered',
+        description:
+            'Santa Barbara guide and news for the best food, drinks, and lifestyle.',
+        siteName: 'Santa Barbara Unfiltered',
+    },
 }
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  const theme = getThemeCookie() || DEFAULT_THEME
+    const theme = getThemeCookie() || DEFAULT_THEME
 
-  return (
-    <html lang="en" className={cn([theme])} style={{ colorScheme: theme }}>
-      <GTMScript />
+    return (
+        <html lang="en" className={cn([theme])} style={{ colorScheme: theme }}>
+            <ErrorBoundary>
+                <GTMScript />
 
-      <body
-        className={cn([
-          `${didactGothic.className}`,
-          // dark
-          'app-bg',
-          'h-full',
-          'pb-28 md:pb-6'
-        ])}
-      >
-        <GTMNoScript />
+                <body
+                    className={cn([
+                        `${didactGothic.className}`,
+                        // dark
+                        'app-bg',
+                        'h-full',
+                        'pb-28 md:pb-6',
+                    ])}
+                >
+                    <GTMNoScript />
 
-        <Providers>
-          <NavBar initialTheme={theme} />
+                    <Providers>
+                        <NavBar initialTheme={theme} />
 
-          {children}
-          <Footer />
-        </Providers>
-      </body>
-    </html>
-  )
+                        {children}
+                        <Footer />
+                    </Providers>
+                </body>
+            </ErrorBoundary>
+        </html>
+    )
 }
